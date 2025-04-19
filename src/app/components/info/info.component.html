@@ -1,1 +1,9 @@
 <p>info works!</p>
+
+@if (user()) {
+<pre>
+  <code>
+{{ user() | json }}
+  </code>
+</pre>
+}

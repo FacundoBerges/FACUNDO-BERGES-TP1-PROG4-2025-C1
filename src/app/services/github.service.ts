@@ -1,6 +1,18 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { GithubUser } from '../interfaces/github-user';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GithubService {}
+export class GithubService {
+  private _userName = 'FacundoBerges';
+  private _baseUrl = `https://api.github.com/users/${this._userName}`;
+  private _httpClient: HttpClient = inject(HttpClient);
+
+  public getUserInfo(): Observable<GithubUser> {
+    return this._httpClient.get<GithubUser>(`${this._baseUrl}`);
+  }
+}
