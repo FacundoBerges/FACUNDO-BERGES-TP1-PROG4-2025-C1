@@ -19,6 +19,7 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
@@ -26,4 +27,15 @@ body {
   &.dark-mode {
     color-scheme: dark;
   }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }

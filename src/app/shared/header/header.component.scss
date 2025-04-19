@@ -1,0 +1,53 @@
+header {
+  height: 5rem;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  box-shadow: var(--mat-sys-level2);
+
+  nav {
+    height: 100%;
+
+    ul {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      li {
+        display: inline-block;
+        padding: 0 0.5rem;
+
+        a {
+          color: inherit;
+          font-size: var(--mat-sys-title-medium);
+
+          &.hover-underline-animation {
+            display: inline-block;
+            position: relative;
+          }
+
+          &.hover-underline-animation::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--mat-sys-on-primary-container);
+            transition: transform 0.25s ease-out;
+            transform-origin: bottom center;
+          }
+
+          &.hover-underline-animation:hover::after,
+          &.hover-underline-animation:focus::after {
+            transform: scaleX(1);
+            transform-origin: bottom center;
+          }
+        }
+      }
+    }
+  }
+}
