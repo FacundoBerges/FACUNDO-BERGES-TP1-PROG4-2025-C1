@@ -11,7 +11,5 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
   styleUrl: './info.component.scss',
 })
 export class InfoComponent {
-  public user: InputSignal<GithubUser | undefined> = input<
-    GithubUser | undefined
-  >();
+  public user: InputSignal<GithubUser | undefined> = input<GithubUser | undefined>();
 }
