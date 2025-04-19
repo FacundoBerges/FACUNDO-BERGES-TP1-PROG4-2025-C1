@@ -8,21 +8,22 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 export const routes: Routes = [
   {
     path: '',
+    title: 'Juegos - Inicio',
     component: HomePageComponent,
   },
   {
     path: 'about',
-    title: 'Sobre mí',
+    title: 'Juegos - Sobre mí',
     component: AboutPageComponent,
   },
   {
     path: 'login',
-    title: 'Iniciar sesión',
+    title: 'Juegos - Iniciar sesión',
     component: LoginPageComponent,
   },
   {
     path: 'register',
-    title: 'Registrarse',
+    title: 'Juegos - Registrarse',
     component: RegisterPageComponent,
   },
   {
