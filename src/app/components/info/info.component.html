@@ -1,23 +1,29 @@
 <section class="info">
   @defer (on viewport) {
-  @if (user()) {
-  <div class="image-container">
-    <img [ngSrc]="user()!.avatar_url" fill alt="Github profile picture" />
-  </div>
+    @if (user()) {
+    <div class="image-container">
+      <img [ngSrc]="user()!.avatar_url" fill alt="Github profile picture" />
+    </div>
 
-  <article class="info-container">
-    <h2>{{ user()!.name }}</h2>
-    <h3>{{ user()!.location }}</h3>
-  </article>
+    <article class="info-container">
+      <h2>{{ user()!.name }}</h2>
+      <h3>{{ user()!.location }}</h3>
+    </article>
   }
   @else {
-
-  }
+    <div class="image-container">
+      <img [ngSrc]="user()!.avatar_url" fill alt="Error profile picture" />
+    </div>
+  
+    <article class="info-container">
+      <h2>Error al cargar información desde GitHub</h2>
+    </article>
+    }
   }
   @placeholder {
-  <p>loading...</p>
+    <p>loading...</p>
   }
   @loading (minimum 2s) {
-  <juegos-loader />
+    <juegos-loader />
   }
 </section>
