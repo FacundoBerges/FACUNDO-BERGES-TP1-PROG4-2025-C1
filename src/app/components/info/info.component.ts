@@ -1,11 +1,11 @@
 import { Component, input, InputSignal } from '@angular/core';
-import { JsonPipe, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 import { GithubUser } from '../../interfaces/github-user';
 
 @Component({
   selector: 'juegos-info',
-  imports: [JsonPipe, NgOptimizedImage],
+  imports: [NgOptimizedImage],
   templateUrl: './info.component.html',
   styleUrl: './info.component.scss',
 })

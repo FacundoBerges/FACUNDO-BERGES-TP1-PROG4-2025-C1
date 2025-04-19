@@ -1,21 +1,23 @@
 <section class="info">
-  @defer () {
-    @if (user()) {
-      <div class="image-container">
-        <img [ngSrc]="user()!.avatar_url" fill alt="Github profile picture" />
-      </div>
+  @defer (on viewport) {
+  @if (user()) {
+  <div class="image-container">
+    <img [ngSrc]="user()!.avatar_url" fill alt="Github profile picture" />
+  </div>
 
-      <article class="info-container">
-        <h2>{{ user()!.name }}</h2>
-        <h3>{{ user()!.location }}</h3>
-      </article>
-    }
-    @else {
+  <article class="info-container">
+    <h2>{{ user()!.name }}</h2>
+    <h3>{{ user()!.location }}</h3>
+  </article>
+  }
+  @else {
 
-    }
+  }
+  }
+  @placeholder {
+  <p>loading...</p>
   }
   @loading (minimum 2s) {
-    
-  }
 
+  }
 </section>
