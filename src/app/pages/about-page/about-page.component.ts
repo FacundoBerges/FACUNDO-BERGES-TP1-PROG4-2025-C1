@@ -12,17 +12,15 @@ import { GithubUser } from '../../interfaces/github-user';
 })
 export class AboutPageComponent implements OnInit {
   private _githubService: GithubService = inject(GithubService);
-  private _user$ = signal<GithubUser | undefined>(undefined);
+  private _user = signal<GithubUser | undefined>(undefined);
 
   ngOnInit(): void {
-    this._githubService
-        .getUserInfo()
-        .subscribe((user: GithubUser) => {
-          this._user$.set(user);
-        });
+    this._githubService.getUserInfo().subscribe((user: GithubUser) => {
+      this._user.set(user);
+    });
   }
 
   get user(): GithubUser | undefined {
-    return this._user$();
+    return this._user();
   }
 }
