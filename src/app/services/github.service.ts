@@ -8,8 +8,7 @@ import { GithubUser } from '../interfaces/github-user';
   providedIn: 'root',
 })
 export class GithubService {
-  private _userName = 'FacundoBerges';
-  private _baseUrl = `https://api.github.com/users/${this._userName}`;
+  private _baseUrl = `https://api.github.com/users/FacundoBerges`;
   private _httpClient: HttpClient = inject(HttpClient);
 
   public getUserInfo(): Observable<GithubUser> {
