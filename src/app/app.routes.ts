@@ -12,14 +12,17 @@ export const routes: Routes = [
   },
   {
     path: 'about',
+    title: 'Sobre mí',
     component: AboutPageComponent,
   },
   {
     path: 'login',
+    title: 'Iniciar sesión',
     component: LoginPageComponent,
   },
   {
     path: 'register',
+    title: 'Registrarse',
     component: RegisterPageComponent,
   },
   {
