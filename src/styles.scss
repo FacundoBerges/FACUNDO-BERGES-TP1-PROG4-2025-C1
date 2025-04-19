@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @use "@angular/material" as mat;
 
+:root {
+  --header-height: 5rem;
+}
+
 html,
 body {
   height: 100%;
@@ -10,7 +14,7 @@ html {
   color-scheme: light;
   @include mat.theme(
     (
-      color: mat.$red-palette,
+      color: mat.$azure-palette,
       typography: Roboto,
       density: 0,
     )
@@ -27,6 +31,16 @@ body {
   &.dark-mode {
     color-scheme: dark;
   }
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 ul {

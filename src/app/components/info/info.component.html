@@ -1,9 +1,21 @@
-<p>info works!</p>
+<section class="info">
+  @defer () {
+    @if (user()) {
+      <div class="image-container">
+        <img [ngSrc]="user()!.avatar_url" fill alt="Github profile picture" />
+      </div>
 
-@if (user()) {
-<pre>
-  <code>
-{{ user() | json }}
-  </code>
-</pre>
-}
+      <article class="info-container">
+        <h2>{{ user()!.name }}</h2>
+        <h3>{{ user()!.location }}</h3>
+      </article>
+    }
+    @else {
+
+    }
+  }
+  @loading (minimum 2s) {
+    
+  }
+
+</section>

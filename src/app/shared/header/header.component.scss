@@ -1,5 +1,5 @@
 header {
-  height: 5rem;
+  height: var(--header-height);
   background-color: var(--mat-sys-primary-container);
   color: var(--mat-sys-on-primary-container);
   box-shadow: var(--mat-sys-level2);
