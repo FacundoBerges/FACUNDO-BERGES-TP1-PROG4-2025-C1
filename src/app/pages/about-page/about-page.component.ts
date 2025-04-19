@@ -15,9 +15,11 @@ export class AboutPageComponent implements OnInit {
   private _user$ = signal<GithubUser | undefined>(undefined);
 
   ngOnInit(): void {
-    this._githubService.getUserInfo().subscribe((user: GithubUser) => {
-      this._user$.update(() => user);
-    });
+    this._githubService
+        .getUserInfo()
+        .subscribe((user: GithubUser) => {
+          this._user$.set(user);
+        });
   }
 
   get user(): GithubUser | undefined {
