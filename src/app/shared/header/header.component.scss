@@ -23,6 +23,10 @@ header {
           color: inherit;
           font-size: var(--mat-sys-title-medium);
 
+          &.active {
+            font-weight: 700;
+          }
+
           &.hover-underline-animation {
             display: inline-block;
             position: relative;

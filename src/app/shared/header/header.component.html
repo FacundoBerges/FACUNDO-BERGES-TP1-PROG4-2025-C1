@@ -1,9 +1,11 @@
 <header>
-  <nav>
+  <nav class="container mx-auto">
     <ul>
       @for (item of menuItems; track $index) {
       <li>
-        <a class="hover-underline-animation" [routerLink]="item.path" routerLinkActive="active">{{ item.name }}</a>
+        <a class="hover-underline-animation" routerLinkActive="active" [routerLink]="item.path" [routerLinkActiveOptions]="{ exact: true }">
+          {{ item.name }}
+        </a>
       </li>
       }
     </ul>
