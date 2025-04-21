@@ -37,12 +37,6 @@ section {
   @media (width >= 48rem) {
     margin: 0;
 
-    div,
-    article {
-      position: relative;
-      top: -3rem;
-    }
-
     .image-container {
       height: 200px;
       width: 200px;
@@ -55,10 +49,6 @@ section {
     .image-container {
       height: 250px;
       width: 250px;
-
-      &:hover {
-        transform: none;
-      }
     }
   }
 }

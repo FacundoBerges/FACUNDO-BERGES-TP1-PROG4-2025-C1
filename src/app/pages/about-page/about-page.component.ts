@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 
-import { InfoComponent } from '../../components/info/info.component';
+import { UserInfoComponent } from '../../components/user-info/user-info.component';
 import { GithubService } from '../../services/github.service';
 import { GithubUser } from '../../interfaces/github-user';
 
 @Component({
   selector: 'juegos-about-page',
-  imports: [InfoComponent],
+  imports: [UserInfoComponent],
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss',
 })
