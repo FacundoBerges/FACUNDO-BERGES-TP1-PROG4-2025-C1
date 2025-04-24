@@ -4,12 +4,12 @@ import { NgOptimizedImage } from '@angular/common';
 import { GithubUser } from '../../interfaces/github-user';
 
 @Component({
-  selector: 'juegos-user-info',
+  selector: 'juegos-user-data',
   imports: [NgOptimizedImage],
-  templateUrl: './user-info.component.html',
-  styleUrl: './user-info.component.scss',
+  templateUrl: './user-data.component.html',
+  styleUrl: './user-data.component.scss',
 })
-export class UserInfoComponent {
+export class UserDataComponent {
   public user: InputSignal<GithubUser | undefined> = input<
     GithubUser | undefined
   >();
