@@ -1,0 +1,61 @@
+<section>
+  <article id="about-me">
+    <h2>Sobre mí</h2>
+
+    <p>Hola! Soy Facundo Hector Berges, programador y desarrollador de software fullstack.</p>
+  </article>
+
+  <article id="chosen-game">
+    <h3>Juego elegido</h3>
+
+    <p>
+      El juego a elección propia es '<span> 2048 </span>'.
+      El mismo consta de un tablero de 4x4 casillas, en la cual se deben sumar casillas con números iguales hasta llegar
+      al número objetivo.
+    </p>
+
+    <p>
+      El juego comienza con 2 casillas al azar con numero 2. En cada turno, el jugador puede mover las casillas en una
+      de las 4 direcciones (arriba, abajo, izquierda, derecha). Al mover las casillas, si hay dos casillas con el mismo
+      número en la dirección del movimiento, se suman y se convierten en una sola casilla con el número resultante de la
+      suma.
+      Por ejemplo, si hay dos casillas con el número 2 y se mueven hacia la derecha, se suman y se convierten en una
+      sola casilla con el número 4. Si hay una casilla con el número 2 y otra con el número 4, al moverlas hacia la
+      derecha no se suman, ya que los números son diferentes.
+    </p>
+
+    <p>
+      Al realizar un movimiento, se genera una nueva casilla con el número 2 en una posición vacía del tablero. Si no
+      hay movimientos disponibles, el juego termina. Un movimiento se considera disponible si hay al menos una casilla
+      vacía o si hay al menos una casilla con el mismo número adyacente a otra en la dirección del movimiento.
+      Por ejemplo, si hay una casilla con el número 2 y otra con el número 4 en la dirección del movimiento, se puede
+      mover la casilla con el número 2, pero no se puede mover la casilla con el número 4, ya que no hay una casilla
+      adyacente con el mismo número.
+    </p>
+
+    <p>
+      La puntuación se calcula sumando los números de las casillas que se han combinado. Por ejemplo, si se combinan dos
+      casillas con el número 2, la puntuación aumenta en 4. Si se combinan dos casillas con el número 4, la puntuación
+      aumenta en 8. Si se combinan dos casillas con el número 8, la puntuación aumenta en 16, y así sucesivamente.
+      La puntuación se muestra en la parte superior del tablero y se actualiza cada vez que se realiza un movimiento, en
+      caso de ser necesario.
+    </p>
+
+    <p>
+      El objetivo del juego es llegar a la casilla con el número 2048, que es la suma de todas las casillas combinadas.
+      Si se logra llegar a la casilla con el número 2048, el jugador gana el juego, pero puede seguir jugando para
+      intentar obtener una puntuación más alta.
+      Si el jugador no logra llegar a la casilla con el número 2048, el juego termina cuando no hay más movimientos
+      disponibles o cuando se ha alcanzado el límite de tiempo.
+      En cualquier caso, la puntuación final se muestra en la parte superior del tablero y se puede comparar con la
+      puntuación de otros jugadores.
+    </p>
+
+    <p>
+      Para finalizar el juego, se debe llegar a la casilla con el número 2048, o bien quedar sin casillas vacías ni
+      movimientos disponibles. Además, el juego tiene un límite de tiempo de 5 minutos. Si no se llega a la casilla con
+      el número 2048 en ese tiempo, el juego termina automáticamente, contabilizando los puntos realizados hasta ese
+      momento y mostrándolo al jugador.
+    </p>
+  </article>
+</section>
