@@ -1,21 +1,16 @@
-<section class="info">
-  @if (user()) {
-    <div class="image-container">
-      <img [ngSrc]="user()!.avatar_url" fill alt="Github profile picture" />
-    </div>
+<div class="user-info flex flex-col justify-center items-center">
+  <div class="image-container">
+    <img [ngSrc]="user()!.avatar_url || '/assets/img/user-placeholder.png'" fill [alt]="user()!.avatar_url ? 'Github profile picture' : 'Error profile picture'" />
+  </div>
 
-    <article class="info-container">
+  <article class="info-container">
+    @if (user()?.name && user()?.location) {
       <h2 class="font-bold text-2xl lg:text-4xl">{{ user()!.name }}</h2>
       <h3 class="lg:text-2xl">{{ user()!.location }}</h3>
-    </article>
-  }
-  @else {
-    <div class="image-container">
-      <img [ngSrc]="user()!.avatar_url" fill alt="Error profile picture" />
-    </div>
-
-    <article class="info-container">
+    }
+    @else {
       <h2>Error al cargar información desde GitHub</h2>
-    </article>
-  }
-</section>
+    }
+  </article>
+</div>
+
