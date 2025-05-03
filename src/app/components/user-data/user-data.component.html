@@ -1,6 +1,6 @@
 <div class="user-info flex flex-col justify-center items-center">
   <div class="image-container">
-    <img [ngSrc]="user()!.avatar_url || '/assets/img/user-placeholder.png'" fill [alt]="user()!.avatar_url ? 'Github profile picture' : 'Error profile picture'" />
+    <img [ngSrc]="user()?.avatar_url || '/assets/img/user-placeholder.png'" fill [alt]="user()?.avatar_url ? 'Github profile picture' : 'Error profile picture'" />
   </div>
 
   <article class="info-container">

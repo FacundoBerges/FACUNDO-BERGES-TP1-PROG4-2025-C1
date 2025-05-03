@@ -1,4 +1,6 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+
+import { Subscription } from 'rxjs';
 
 import { UserDataComponent } from '../../components/user-data/user-data.component';
 import { UserInfoComponent } from '../../components/user-info/user-info.component';
@@ -11,17 +13,20 @@ import { GithubUser } from '../../interfaces/github-user';
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss',
 })
-export class AboutPageComponent implements OnInit {
+export class AboutPageComponent implements OnInit, OnDestroy {
   private _githubService: GithubService = inject(GithubService);
-  private _user = signal<GithubUser | undefined>(undefined);
+  private _subscription?: Subscription;
+  public user: WritableSignal<GithubUser | undefined> = signal<GithubUser | undefined>(undefined);
 
   ngOnInit(): void {
-    this._githubService.getUserInfo().subscribe((user: GithubUser) => {
-      this._user.set(user);
-    });
+    this._subscription = this._githubService
+      .getUserInfo()
+      .subscribe((user: GithubUser) => {
+        this.user.set(user);
+      });
   }
 
-  get user(): GithubUser | undefined {
-    return this._user();
+  ngOnDestroy(): void {
+    if (this._subscription) this._subscription.unsubscribe();
   }
 }

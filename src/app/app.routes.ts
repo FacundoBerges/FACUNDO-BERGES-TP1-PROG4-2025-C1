@@ -1,34 +1,61 @@
 import { Routes } from '@angular/router';
 
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { AboutPageComponent } from './pages/about-page/about-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
     title: 'Juegos - Inicio',
-    component: HomePageComponent,
+    loadComponent: () => import('./pages/home-page/home-page.component').then((c) => c.HomePageComponent),
   },
   {
     path: 'about',
     title: 'Juegos - Sobre mí',
-    component: AboutPageComponent,
+    loadComponent: () => import('./pages/about-page/about-page.component').then((c) => c.AboutPageComponent),
   },
   {
     path: 'login',
     title: 'Juegos - Iniciar sesión',
-    component: LoginPageComponent,
+    loadComponent: () => import('./pages/login-page/login-page.component').then((c) => c.LoginPageComponent),
   },
   {
     path: 'register',
     title: 'Juegos - Registrarse',
-    component: RegisterPageComponent,
+    loadComponent: () => import('./pages/register-page/register-page.component').then((c) => c.RegisterPageComponent),
+  },
+  {
+    path: 'games',
+    title: 'Juegos',
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: 'hangman',
+        title: 'Juegos - Ahorcado',
+        loadComponent: () => import('./pages/games/hangman-page/hangman-page.component').then((c) => c.HangmanPageComponent),
+      },
+      {
+        path: 'higher-lower',
+        title: 'Juegos - Mayor o menor',
+        loadComponent: () => import(
+            './pages/games/higher-lower-page/higher-lower-page.component').then((c) => c.HigherLowerPageComponent),},
+      {
+        path: 'trivia',
+        title: 'Juegos - Preguntados',
+        loadComponent: () => import('./pages/games/trivia-page/trivia-page.component').then((c) => c.TriviaPageComponent),
+      },
+      {
+        path: '2048',
+        title: 'Juegos - 2048',
+        loadComponent: () => import('./pages/games/twenty-forty-eight-page/twenty-forty-eight-page.component').then((c) => c.TwentyFortyEightPageComponent),
+      },
+      {
+        path: '**',
+        redirectTo: '',
+      },
+    ],
   },
   {
     path: '**',
-    pathMatch: 'full',
     redirectTo: '',
   },
 ];
