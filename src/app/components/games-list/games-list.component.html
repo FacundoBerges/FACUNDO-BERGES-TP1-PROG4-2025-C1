@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-4">
+  <h3 class="text-6xl text-center">Juegos disponibles</h3>
+
+  <h6 class="text-xl text-center">Selecciona un juego para jugarlo.</h6>
+
+  <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    @for (game of games(); track game.path) {
+    <juegos-game-card [game]="game" />
+    }
+  </section>
+</div>
