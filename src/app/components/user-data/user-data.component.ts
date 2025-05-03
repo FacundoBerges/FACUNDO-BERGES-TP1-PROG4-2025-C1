@@ -10,7 +10,5 @@ import { GithubUser } from '../../interfaces/github-user';
   styleUrl: './user-data.component.scss',
 })
 export class UserDataComponent {
-  public user: InputSignal<GithubUser | undefined> = input<
-    GithubUser | undefined
-  >();
+  public user: InputSignal<GithubUser | undefined> = input.required<GithubUser | undefined>();
 }

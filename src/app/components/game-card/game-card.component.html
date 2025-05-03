@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{game().name}}</mat-card-title>
+    </mat-card-title-group>
+  </mat-card-header>
+
+  <img class="w-full object-cover" mat-card-image src="https://placehold.co/150x150" alt="Avatar">
+
+  <mat-card-content>
+    <p class="text-lg">{{game().description}}</p>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <a mat-flat-button extended [routerLink]="[game().path]">
+      <mat-icon>play_arrow</mat-icon>
+      Jugar
+    </a>
+  </mat-card-actions>
+</mat-card>

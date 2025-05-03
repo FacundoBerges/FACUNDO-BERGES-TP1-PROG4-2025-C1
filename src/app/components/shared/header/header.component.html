@@ -1,0 +1,18 @@
+<header>
+  <nav>
+    <ul>
+      @if (authService.loggedUser()) {
+      <span class="md:text-xl">Bienvenido, {{authService.loggedUser()?.name }}</span>
+      }
+
+      @for (item of menuItems(); track item.path) {
+      <li>
+        <a class="hover-underline-animation" routerLinkActive="active" [routerLink]="item.path"
+          [routerLinkActiveOptions]="{ exact: true }" (click)="item.path === '/logout' ? authService.signOut() : null"> 
+          {{ item.name }}
+        </a>
+      </li>
+      }
+    </ul>
+  </nav>
+</header>

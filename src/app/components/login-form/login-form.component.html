@@ -1,0 +1,53 @@
+<div class="flex justify-center items-center">
+  <div class="form-box level-login">
+    <div class="box box-shadow"></div>
+
+    <div class="box loginBox">
+      <h2>LOGIN</h2>
+
+      <form class="form mb-6" [formGroup]="loginForm" (submit)="onSubmit()">
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="john.doe@mail.com" formControlName="email" required>
+          <mat-icon matPrefix>mail</mat-icon>
+          @if (email?.value) {
+          <div matSuffix (click)="clearEmail()" class="cursor-pointer">
+            <mat-icon>close</mat-icon>
+          </div>
+          }
+          @if (email?.invalid && (email?.dirty || email?.touched)) {
+          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+          }
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Contraseña</mat-label>
+          <input [type]="showPassword ? 'text' : 'password'" matInput placeholder="********" formControlName="password"
+            required>
+          <mat-icon matPrefix>key</mat-icon>
+          @if (password?.value) {
+          <div matSuffix (click)="togglePasswordVisibility()" class="cursor-pointer">
+            <mat-icon>
+              @if (showPassword) {
+              visibility
+              }
+              @else {
+              visibility_off
+              }
+            </mat-icon>
+          </div>
+          }
+          @if (password?.invalid && (password?.dirty || password?.touched)) {
+          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+          }
+        </mat-form-field>
+
+        <button type="submit" class="btn" tabindex="0">INGRESAR</button>
+
+        <div class="f_link">
+          <a routerLink="/register" tabindex="0" class="resetTag">No tienes cuenta? Regístrate aquí!</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
