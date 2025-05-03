@@ -216,91 +216,6 @@ h2 {
     }
   }
 
-  .forgetbox {
-    background-color: #56adc7;
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transform: translate(0px, 9px) scale(1.03);
-
-    .back {
-      position: absolute;
-      top: 13px;
-      left: 26px;
-      color: #fff;
-      font-size: 32px;
-      font-weight: bold;
-      animation: back 0.8s linear;
-      animation-iteration-count: infinite;
-
-      svg {
-        fill: #fff;
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    .f_row {
-      label,
-      input {
-        color: #fff;
-      }
-
-      u {
-        background-color: #7dc6dc;
-
-        &:before {
-          background-color: #fff;
-        }
-      }
-
-      &.last {
-        margin-bottom: 40px;
-      }
-    }
-
-    .btn {
-      border-color: #7dc6dc;
-      color: #7dc6dc;
-      u {
-        background-color: #7dc6dc;
-      }
-    }
-
-    h2 {
-      color: #fff;
-      border-left-color: #fff;
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.48, 0.55, 0.69, 0.9);
-      transform: translate(-20px, 0px);
-    }
-
-    .form > div {
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.48, 0.55, 0.69, 0.9);
-      transform: translate(0px, 20px);
-      transition-delay: 0.15s;
-    }
-
-    p {
-      color: #fff;
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.48, 0.55, 0.69, 0.9);
-      transform: translate(0px, 20px);
-      transition-delay: 0.2s;
-    }
-
-    .btn {
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.48, 0.55, 0.69, 0.9);
-      transform: translate(0px, 20px);
-      transition-delay: 0.25s;
-    }
-  }
-
   &.level-login {
     .box-shadow {
       opacity: 0.7;
@@ -331,13 +246,6 @@ h2 {
       opacity: 1;
       visibility: visible;
     }
-
-    // .regTag {
-    //   animation: regTag 0.3s cubic-bezier(0.48, 0.55, 0.73, 0.78),
-    //     regTag2 0.3s cubic-bezier(0.48, 0.55, 0.73, 0.78);
-    //   animation-fill-mode: forwards;
-    //   //animation-direction: reverse;
-    // }
 
     .reg_bg {
       animation: regMask 0.3s cubic-bezier(0.48, 0.55, 0.73, 0.78);
@@ -377,21 +285,6 @@ h2 {
       opacity: 0.7;
       transform-origin: center top;
       transform: translate(0px, -9px) scale(0.97);
-    }
-
-    .forgetbox {
-      transform: translate(0px, 0px) scale(1);
-      opacity: 1;
-      visibility: visible;
-
-      p,
-      form > div,
-      .btn,
-      h2 {
-        visibility: visible;
-        opacity: 1;
-        transform: translate(0px, 0px);
-      }
     }
   }
 }
@@ -577,12 +470,6 @@ h2 {
     border-color: var(--mat-sys-primary);
     color: var(--mat-sys-primary);
   }
-
-  // &.active {
-  //   u {
-  //     transform: scale(1);
-  //   }
-  // }
 }
 
 .btn-large {
@@ -624,8 +511,3 @@ h2 {
     }
   }
 }
-
-// @media screen and (max-height: 650px) {
-//   .form-box {
-//   }
-// }
