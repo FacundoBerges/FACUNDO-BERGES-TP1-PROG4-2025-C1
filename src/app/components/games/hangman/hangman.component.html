@@ -1,0 +1,15 @@
+<juegos-hangman-image [imageNumber]="attempts()" />
+
+<juegos-hangman-word [hiddenWord]="hiddenWord()" />
+
+<p class="block text-bold text-center text-md sm:text-lg lg:text-2xl my-2">Intentos: {{attempts()}}/{{MAX_ATTEMPTS}}</p>
+
+<div class="container">
+  @for (button of letterButtons(); track button.label) {
+  <juegos-button [button]="button" (click)="checkLetter(button.label)" />
+  }
+</div>
+
+<div class="flex flex-row justify-center items-center">
+  <juegos-button [button]="{ label: 'Nuevo juego', isDisabled: false}" (click)="newGame()" />
+</div>

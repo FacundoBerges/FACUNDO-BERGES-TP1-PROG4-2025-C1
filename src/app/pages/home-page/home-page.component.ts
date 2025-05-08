@@ -7,25 +7,25 @@ const games: Game[] = [
   {
     name: 'Ahorcado',
     description: 'Adivina la palabra oculta!',
-    image: 'https://via.placeholder.com/150',
+    image: '/assets/img/hangman.png',
     path: '/games/hangman',
   },
   {
     name: 'Mayor o menor',
     description: 'Adivina si el número es mayor o menor!',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://placehold.co/150x150',
     path: '/games/higher-lower',
   },
   {
     name: 'Preguntados',
     description: 'Responde las preguntas de trivia!',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://placehold.co/150x150',
     path: '/games/trivia',
   },
   {
     name: '2048',
     description: 'Suma los números iguales para llegar a 2048!',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://placehold.co/150x150',
     path: '/games/2048',
   },
 ];
