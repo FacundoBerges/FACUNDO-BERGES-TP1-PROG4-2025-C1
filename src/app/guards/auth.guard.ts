@@ -1,15 +1,11 @@
 import { ActivatedRouteSnapshot, CanActivateChildFn, Router, RouterStateSnapshot } from '@angular/router';
 import { inject } from '@angular/core';
 
-import { User } from '@supabase/supabase-js';
-
 import { AuthService } from '../services/auth.service';
 
-export const authGuard: CanActivateChildFn = (childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export const authGuard: CanActivateChildFn = (childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   const authService: AuthService = inject(AuthService);
-  const user: User | null = authService.user();
-
-  const isLoggedIn: boolean = !!user;
+  const isLoggedIn: boolean = !!authService.user();
 
   if (!isLoggedIn) {
     const router = inject(Router);
@@ -21,5 +17,5 @@ export const authGuard: CanActivateChildFn = (childRoute: ActivatedRouteSnapshot
     });
   }
 
-  return !!user;
+  return isLoggedIn;
 };

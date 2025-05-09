@@ -124,7 +124,7 @@ export class AuthService implements OnDestroy {
 
     if (data.user?.id) {
       user.id = data.user.id;
-      this._insertUser(user);
+      await this._insertUser(user);
     }
   }
 

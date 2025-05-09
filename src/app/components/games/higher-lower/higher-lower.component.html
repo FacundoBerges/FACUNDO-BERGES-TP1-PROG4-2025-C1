@@ -1,0 +1,20 @@
+<section class="flex flex-col justify-center align-center">
+  <article class="flex">
+    <juegos-higher-lower-card [cardName]="CARD_BACK" />
+  </article>
+
+  <article class="flex">
+    <juegos-higher-lower-card [cardName]="lastCard" />
+  </article>
+</section>
+
+<div>
+  <div class="flex flex-row justify-center align-center">
+    <juegos-button (click)="drawCard('higher')" [button]="{label: 'Mayor', isDisabled: isGameOver() }" />
+    <juegos-button (click)="drawCard('lower')" [button]="{label: 'Menor', isDisabled: isGameOver()}" />
+  </div>
+
+  <div class="flex flex-row justify-center align-center">
+    <juegos-button (click)="resetGame()" [button]="{label: 'Nuevo juego', isDisabled: false}" />
+  </div>
+</div>
