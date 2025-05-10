@@ -13,7 +13,7 @@ const games: Game[] = [
   {
     name: 'Mayor o menor',
     description: 'Adivina si el número es mayor o menor!',
-    image: 'https://placehold.co/150x150',
+    image: '/assets/img/higher-lower.png',
     path: '/games/higher-lower',
   },
   {

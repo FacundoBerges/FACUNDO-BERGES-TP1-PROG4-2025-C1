@@ -1,11 +1,13 @@
-<section class="flex flex-col justify-center align-center">
-  <article class="flex">
-    <juegos-higher-lower-card [cardName]="CARD_BACK" />
-  </article>
+<div class="my-8 flex justify-center align-center">
+  <juegos-timer />
+  <!-- [isGameOver]="isGameOver()"  -->
+  <!-- (timerFinished)="onTimerFinished()"  -->
+</div>
 
-  <article class="flex">
-    <juegos-higher-lower-card [cardName]="lastCard" />
-  </article>
+<section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <juegos-higher-lower-card class="flex flex-row justify-center align-center" [cardName]="CARD_BACK" />
+
+  <juegos-higher-lower-card class="flex flex-row justify-center align-center" [cardName]="lastCard" />
 </section>
 
 <div>

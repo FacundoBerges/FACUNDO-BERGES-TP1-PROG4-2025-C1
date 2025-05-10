@@ -4,10 +4,11 @@ import { ButtonComponent } from '../../ui/button/button.component';
 import { LowerOrHigher } from '../../../interfaces/lower-higher';
 import { HigherLowerService } from '../../../services/higher-lower.service';
 import { HigherLowerCardComponent } from './higher-lower-card/higher-lower-card.component';
+import { TimerComponent } from '../../shared/timer/timer.component';
 
 @Component({
   selector: 'juegos-higher-lower',
-  imports: [HigherLowerCardComponent, ButtonComponent],
+  imports: [HigherLowerCardComponent, ButtonComponent, TimerComponent],
   templateUrl: './higher-lower.component.html',
   styleUrl: './higher-lower.component.scss',
 })
@@ -34,7 +35,7 @@ export class HigherLowerComponent {
 
   public drawCard(guess: LowerOrHigher): void {
     if (this.isGameOver()) return;
-    
+
     this.higherLowerService.currentCard.set(this.higherLowerService.drawCard());
     const lastCard: string = this.higherLowerService.lastCard();
     const currentCard: string = this.higherLowerService.drawCard();
