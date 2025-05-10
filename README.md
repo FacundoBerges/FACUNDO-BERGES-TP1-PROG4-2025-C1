@@ -47,85 +47,85 @@ La _"Sala de Juegos"_ tiene que contar con los siguientes puntos:
 
 ## Entregas por sprint:
 
-### Sprint #1
+### Sprint #1 ✅
 
-- Creación del proyecto.
-- Deploy en hosting (vercel, firebase, etc.).
-- Componentes creados:
-  - Login
-  - Registro
-  - Bienvenida / Home
-  - Quién Soy
-- Navegación entre componentes. Sin límites de accesibilidad.
-- Funcionalidad - Componente Quién Soy:
-  - Traer los datos del alumno desde la api de github, ruta: https://api.github.com/users/USERNAME. Ejemplo: [Linus Torvalds](https://api.github.com/users/torvalds)
-  - Mostrar nombre del alumno, imagen de perfil y más datos.
-  - Explicar de forma clara la elección del juego propio y cómo jugarlo.
-- Implementar un favicon propio.
+- ✅ Creación del proyecto.
+- ✅ Deploy en hosting (vercel, firebase, etc.).
+- ✅ Componentes creados:
+  - ✅ Login
+  - ✅ Registro
+  - ✅ Bienvenida / Home
+  - ✅ Quién Soy
+- ✅ Navegación entre componentes. Sin límites de accesibilidad.
+- ✅ Funcionalidad - Componente Quién Soy:
+  - ✅ Traer los datos del alumno desde la api de github, ruta: https://api.github.com/users/USERNAME. Ejemplo: [Linus Torvalds](https://api.github.com/users/torvalds)
+  - ✅ Mostrar nombre del alumno, imagen de perfil y más datos.
+  - ✅ Explicar de forma clara la elección del juego propio y cómo jugarlo.
+- ✅ Implementar un favicon propio.
 
 ### Sprint #2
 
-- Funcionalidad - Componente Bienvenida / Home:
-  - Tiene que ser el componente principal, desde este se podrán acceder a los diferentes juegos y listados.
-  - Si el usuario **_NO_** está logueado, mostrar los botones de registro e inicio de sesión.
-  - Si el usuario está logueado, mostrar su nombre de usuario y un botón para cerrar sesión.
-  - Hasta no ver el tema "Guardias de ruta" o "Guards", no es necesario bloquear los botones de los juegos, pero si ocultar los botones que no deberían verse (ejemplo, si estoy logueado, no debería ver el botón de registrarme). Una vez visto ese tema, bloquear la navegación a dichas rutas en el caso en el que sea necesario.
-- Funcionalidad - Inicio de sesión:
-  - Tiene que validar al usuario frente a supabase / firebase utilizando correo y contraseña.
-  - En caso de que el inicio de sesión sea exitoso, navegar automáticamente al Home.
-  - En caso de que el inicio de sesión no sea exitoso, mostrar un mensaje con el respectivo error.
-  - La página de login debe contar con tres botones de inicio de sesión rápido, que le permitan a quién esté probando la aplicación ingresar automáticamente con usuarios previamente registrados para que las pruebas sean más ágiles.
-- Funcionalidad: Registro.
-  - Cuenta con un formulario que permite registrar a un usuario. Crea su cuenta en el sistema de autenticación y guarda sus datos en la base de datos. Nota: la contraseña **_no_** se guarda.
-  - El usuario debe ingresar su correo, nombre, apellido, edad y contraseña.
-  - Una vez cargados todos los datos, y el usuario se registra correctamente, se debe iniciar sesión con ese usuario y navegar automáticamente al Home.
-  - Emitir mensaje si el usuario ya se encuentra registrado.
+- ✅ Funcionalidad - Componente Bienvenida / Home:
+  - ✅ Tiene que ser el componente principal, desde este se podrán acceder a los diferentes juegos y listados.
+  - ✅ Si el usuario **_NO_** está logueado, mostrar los botones de registro e inicio de sesión.
+  - ✅ Si el usuario está logueado, mostrar su nombre de usuario y un botón para cerrar sesión.
+  - ✅ Hasta no ver el tema "Guardias de ruta" o "Guards", no es necesario bloquear los botones de los juegos, pero si ocultar los botones que no deberían verse (ejemplo, si estoy logueado, no debería ver el botón de registrarme). Una vez visto ese tema, bloquear la navegación a dichas rutas en el caso en el que sea necesario.
+- ❌ Funcionalidad - Inicio de sesión:
+  - ✅ Tiene que validar al usuario frente a supabase / firebase utilizando correo y contraseña.
+  - ✅ En caso de que el inicio de sesión sea exitoso, navegar automáticamente al Home.
+  - ❌ En caso de que el inicio de sesión no sea exitoso, mostrar un mensaje con el respectivo error.
+  - ❌ La página de login debe contar con tres botones de inicio de sesión rápido, que le permitan a quién esté probando la aplicación ingresar automáticamente con usuarios previamente registrados para que las pruebas sean más ágiles.
+- ❌ Funcionalidad: Registro.
+  - ✅ Cuenta con un formulario que permite registrar a un usuario. Crea su cuenta en el sistema de autenticación y guarda sus datos en la base de datos. Nota: la contraseña **_no_** se guarda.
+  - ✅ El usuario debe ingresar su correo, nombre, apellido, edad y contraseña.
+  - ✅ Una vez cargados todos los datos, y el usuario se registra correctamente, se debe iniciar sesión con ese usuario y navegar automáticamente al Home.
+  - ❌ Emitir mensaje si el usuario ya se encuentra registrado.
 
 ### Sprint #3
 
-- Juego: Ahorcado.
-  - Deben mostrarse botones que simbolicen a todas las letras del abecedario. La entrada de datos es a través de botones, NO el teclado.
-  - Al finalizar la partida, guardar en la base de datos: el usuario que jugó, junto con el tiempo de finalización, cantidad de letras seleccionadas, etc.
-- Juego: Mayor o Menor.
-  - Se muestra una de una baraja de naipes. Se debe adivinar si la próxima carta va a ser un número mayor o un número menor.
-  - Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de cartas acertadas, etc.
-- Sala de chat:
-  - Se debe mostrar el chat global para los usuarios logueados.
-  - Se debe permitir enviar un mensaje a la sala de chat.
-  - Al enviar un mensaje, este se guarda en la base de datos con el usuario que lo envió, el mensaje y la fecha de envío.
-  - Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje automáticamente (se debe estar suscrito al servicio de base de datos en tiempo real).
-  - Se debe mostrar quién envía cada mensaje y a qué hora. El mensaje propio debe diferenciarse del resto.
+- ❌ Juego: Ahorcado.
+  - ✅ Deben mostrarse botones que simbolicen a todas las letras del abecedario. La entrada de datos es a través de botones, NO el teclado.
+  - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, junto con el tiempo de finalización, cantidad de letras seleccionadas, etc.
+- ❌ Juego: Mayor o Menor.
+  - ✅ Se muestra una de una baraja de naipes. Se debe adivinar si la próxima carta va a ser un número mayor o un número menor.
+  - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de cartas acertadas, etc.
+- ❌ Sala de chat:
+  - ❌ Se debe mostrar el chat global para los usuarios logueados.
+  - ❌ Se debe permitir enviar un mensaje a la sala de chat.
+  - ❌ Al enviar un mensaje, este se guarda en la base de datos con el usuario que lo envió, el mensaje y la fecha de envío.
+  - ❌ Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje automáticamente (se debe estar suscrito al servicio de base de datos en tiempo real).
+  - ❌ Se debe mostrar quién envía cada mensaje y a qué hora. El mensaje propio debe diferenciarse del resto.
 
 ### Sprint #4
 
-- Juego: Preguntados.
-  - Debe obtener los datos de una api.
-  - Puede ser una api de preguntas o una api con información a la que luego se le agregue la funcionalidad de preguntados. Puede estar en inglés.
-  - Las opciones de elección deben ser botones.
-  - Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de preguntas acertadas, etc.
-- Crear el juego propio:
-  - Agregar la descripción y reglas del mismo en la página quién soy.
-  - Al finalizar la partida, guardar en la base de datos: el usuario que jugó y algún dato que mida su desempeño (puntaje, tiempo en finalizar, etc).
-- Listados de resultados:
-  - Crear la page Resultados.
-  - Crear 4 tablas que detallen los resultados de los 4 juegos, mostrando el desempeño de cada jugador ordenado de mejor desempeño / puntaje a peor.
+- ❌ Juego: Preguntados.
+  - ❌ Debe obtener los datos de una api.
+  - ❌ Puede ser una api de preguntas o una api con información a la que luego se le agregue la funcionalidad de preguntados. Puede estar en inglés.
+  - ❌ Las opciones de elección deben ser botones.
+  - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de preguntas acertadas, etc.
+- ❌ Crear el juego propio:
+  - ✅ Agregar la descripción y reglas del mismo en la página quién soy.
+  - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó y algún dato que mida su desempeño (puntaje, tiempo en finalizar, etc).
+- ❌ Listados de resultados:
+  - ❌ Crear la page Resultados.
+  - ❌ Crear 4 tablas que detallen los resultados de los 4 juegos, mostrando el desempeño de cada jugador ordenado de mejor desempeño / puntaje a peor.
 
 ### Sprint #5 - Recuperatorio
 
-- Incorporar una encuesta:
-  - Tiene que pedir los siguientes datos:
-    - Nombre y apellido.
-    - Edad, validar que sean mayores de 18 años y menores de 99 años.
-    - Número de teléfono, validar que sean solo números y no más de 10 caracteres.
-  - Mínimo 3 preguntas.
-    - Utilizar distintos controles, textbox, checkbox, radiobutton, etc.
-    - No se pueden repetir.
-  - Tiene que contar con validaciones.
-  - Todos los campos son requeridos.
-  - Guardar las respuestas en la DB identificando el usuario.
-- Incorporar una sección donde se puedan ver los resultados de las encuestas:
-  - Solo pueden verlas usuarios marcados como administradores (utilizar guards).
-- Añadir animaciones de transición de componentes.
+- ❌ Incorporar una encuesta:
+  - ❌ Tiene que pedir los siguientes datos:
+    - ❌ Nombre y apellido.
+    - ❌ Edad, validar que sean mayores de 18 años y menores de 99 años.
+    - ❌ Número de teléfono, validar que sean solo números y no más de 10 caracteres.
+  - ❌ Mínimo 3 preguntas.
+    - ❌ Utilizar distintos controles, textbox, checkbox, radiobutton, etc.
+    - ❌ No se pueden repetir.
+  - ❌ Tiene que contar con validaciones.
+  - ❌ Todos los campos son requeridos.
+  - ❌ Guardar las respuestas en la DB identificando el usuario.
+- ❌ Incorporar una sección donde se puedan ver los resultados de las encuestas:
+  - ❌ Solo pueden verlas usuarios marcados como administradores (utilizar guards).
+- ❌ Añadir animaciones de transición de componentes.
 
 # **_Proyecto generado usando [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5._**
 
