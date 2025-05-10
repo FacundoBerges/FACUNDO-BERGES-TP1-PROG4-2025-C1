@@ -5,7 +5,7 @@
 
   <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     @for (game of games(); track game.path) {
-    <juegos-game-card [game]="game" />
+      <juegos-game-card [game]="game" />
     }
   </section>
 </div>

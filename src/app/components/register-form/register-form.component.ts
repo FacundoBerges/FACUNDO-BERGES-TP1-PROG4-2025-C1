@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
+import { FormErrorService } from '../../services/form-error.service';
 import { passwordMatchValidator } from '../../validators/validators';
 import { UserRegisterData } from '../../interfaces/user-data';
 
@@ -17,6 +18,7 @@ import { UserRegisterData } from '../../interfaces/user-data';
 })
 export class RegisterFormComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder);
+  private _formErrorService: FormErrorService = inject(FormErrorService);
   public readonly registerUserEmitter: OutputEmitterRef<UserRegisterData> = output<UserRegisterData>();
   public registerForm: FormGroup = this._formBuilder.nonNullable.group(
     {
@@ -58,10 +60,17 @@ export class RegisterFormComponent {
     return this.registerForm.get('confirmPassword');
   }
 
+  public getErrorMessage(controlName: string): string | void {
+    return this._formErrorService.getErrorMessage(controlName, this.registerForm);
+  }
+
   public onSubmit(): void {
     if (!this.registerForm.valid) {
       this.registerForm.markAllAsTouched();
-      console.error('Login Form is invalid');
+      console.error('Register Form is invalid');
+      console.error(this.registerForm.errors);
+      console.error(this.registerForm.controls);
+      
       return;
     }
 
@@ -75,7 +84,7 @@ export class RegisterFormComponent {
 
     this.registerUserEmitter.emit(registerUser);
 
-    console.log('Login Form Submitted:', this.registerForm.value);
+    console.log('Register Form Submitted:', this.registerForm.value);
   }
 
   public clearName(): void {

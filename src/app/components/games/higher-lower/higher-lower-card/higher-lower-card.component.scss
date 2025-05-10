@@ -1,0 +1,14 @@
+.card-container {
+  display: flex;
+  border-radius: 1.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  max-width: 17rem;
+
+  .card-image {
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+}

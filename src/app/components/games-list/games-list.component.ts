@@ -1,6 +1,6 @@
 import { Component, input, InputSignal } from '@angular/core';
 
-import { GameCardComponent } from '../game-card/game-card.component';
+import { GameCardComponent } from './game-card/game-card.component';
 import { Game } from '../../interfaces/game';
 
 @Component({

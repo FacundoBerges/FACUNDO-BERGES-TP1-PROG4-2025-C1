@@ -9,92 +9,113 @@
 
       <form class="form mb-6" [formGroup]="registerForm" (submit)="onSubmit()">
         <mat-form-field class="w-full">
+
           <mat-label>Nombre</mat-label>
+
           <input id="name" type="text" matInput placeholder="John" formControlName="name" required>
           <mat-icon matPrefix>person</mat-icon>
+
           @if (name?.value) {
-          <div matSuffix (click)="clearName()" class="cursor-pointer">
-            <mat-icon>close</mat-icon>
-          </div>
+            <div matSuffix (click)="clearName()" class="cursor-pointer">
+              <mat-icon>close</mat-icon>
+            </div>
           }
+
           @if (name?.invalid && (name?.dirty || name?.touched)) {
-          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+            <mat-error>{{ getErrorMessage('name') }}</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field class="w-full">
           <mat-label>Apellido</mat-label>
+
           <input id="surname" type="text" matInput placeholder="Doe" formControlName="surname" required>
+
           <mat-icon matPrefix>badge</mat-icon>
+
           @if (surname?.value) {
-          <div matSuffix (click)="clearSurname()" class="cursor-pointer">
-            <mat-icon>close</mat-icon>
-          </div>
+            <div matSuffix (click)="clearSurname()" class="cursor-pointer">
+              <mat-icon>close</mat-icon>
+            </div>
           }
+
           @if (surname?.invalid && (surname?.dirty || surname?.touched)) {
-          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+            <mat-error>{{ getErrorMessage('surname') }}</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field class="w-full">
           <mat-label>Edad</mat-label>
-          <input id="age" type="number" matInput placeholder="25" formControlName="age" min="1" max="99" step="1"
-            required />
+
+          <input id="age" type="number" matInput placeholder="25" formControlName="age" min="1" max="99" step="1" required />
+
           <mat-icon matPrefix>calendar_today</mat-icon>
+          
           <mat-hint align="end" class="text-white">Rango válido: 1 a 99 años.</mat-hint>
+          
           @if (age?.invalid && (age?.dirty || age?.touched)) {
-          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+            <mat-error>{{ getErrorMessage('age') }}</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field class="w-full">
           <mat-label>Email</mat-label>
+
           <input id="email" type="email" matInput placeholder="john.doe@mail.com" formControlName="email" required>
+
           <mat-icon matPrefix>mail</mat-icon>
+
           @if (email?.value) {
-          <div matSuffix (click)="clearEmail()" class="cursor-pointer">
-            <mat-icon>close</mat-icon>
-          </div>
+            <div matSuffix (click)="clearEmail()" class="cursor-pointer">
+              <mat-icon>close</mat-icon>
+            </div>
           }
+
           @if (email?.invalid && (email?.dirty || email?.touched)) {
-          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+            <mat-error>{{ getErrorMessage('email') }}</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field class="w-full">
           <mat-label>Contraseña</mat-label>
-          <input id="password" [type]="showPassword ? 'text' : 'password'" matInput placeholder="********"
-            formControlName="password" required>
+
+          <input id="password" [type]="showPassword ? 'text' : 'password'" matInput placeholder="********" formControlName="password" required>
+          
           <mat-icon matPrefix>key</mat-icon>
+          
           @if (password?.value) {
-          <div matSuffix (click)="togglePasswordVisibility()" class="cursor-pointer">
-            <mat-icon>
-              @if (showPassword) {
-              visibility
-              }
-              @else {
-              visibility_off
-              }
-            </mat-icon>
-          </div>
+            <div matSuffix (click)="togglePasswordVisibility()" class="cursor-pointer">
+              <mat-icon>
+                @if (showPassword) {
+                  visibility
+                }
+                @else {
+                  visibility_off
+                }
+              </mat-icon>
+            </div>
           }
+
           @if (password?.invalid && (password?.dirty || password?.touched)) {
-          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+            <mat-error>{{ getErrorMessage('password') }}</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field class="w-full">
           <mat-label>Repetir contraseña</mat-label>
-          <input id="showConfirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" matInput
-            placeholder="********" formControlName="confirmPassword" required>
+
+          <input id="showConfirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" matInput placeholder="********" formControlName="confirmPassword" required>
+          
           <mat-icon matPrefix>password</mat-icon>
+          
           @if (confirmPassword?.value) {
-          <div matSuffix (click)="toggleConfirmPasswordVisibility()" class="cursor-pointer">
-            <mat-icon>{{showConfirmPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
-          </div>
+            <div matSuffix (click)="toggleConfirmPasswordVisibility()" class="cursor-pointer">
+              <mat-icon>{{showConfirmPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </div>
           }
+
           @if (confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)) {
-          <!-- <mat-error>{{ getErrorMessage() }}</mat-error> -->
+            <mat-error>{{ getErrorMessage('confirmPassword') }}</mat-error>
           }
         </mat-form-field>
 

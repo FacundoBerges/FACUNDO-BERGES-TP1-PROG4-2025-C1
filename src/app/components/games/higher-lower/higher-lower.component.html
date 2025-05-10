@@ -1,0 +1,22 @@
+<div class="my-8 flex justify-center align-center">
+  <juegos-timer />
+  <!-- [isGameOver]="isGameOver()"  -->
+  <!-- (timerFinished)="onTimerFinished()"  -->
+</div>
+
+<section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <juegos-higher-lower-card class="flex flex-row justify-center align-center" [cardName]="CARD_BACK" />
+
+  <juegos-higher-lower-card class="flex flex-row justify-center align-center" [cardName]="lastCard" />
+</section>
+
+<div>
+  <div class="flex flex-row justify-center align-center">
+    <juegos-button (click)="drawCard('higher')" [button]="{label: 'Mayor', isDisabled: isGameOver() }" />
+    <juegos-button (click)="drawCard('lower')" [button]="{label: 'Menor', isDisabled: isGameOver()}" />
+  </div>
+
+  <div class="flex flex-row justify-center align-center">
+    <juegos-button (click)="resetGame()" [button]="{label: 'Nuevo juego', isDisabled: false}" />
+  </div>
+</div>
