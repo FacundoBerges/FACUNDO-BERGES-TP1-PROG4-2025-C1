@@ -1,6 +1,8 @@
 import { inject, Injectable, OnDestroy, signal, WritableSignal } from '@angular/core';
-import { AuthChangeEvent, createClient, Session, Subscription, SupabaseClient, User } from '@supabase/supabase-js';
+import { AuthChangeEvent, AuthError, createClient, Session, Subscription, SupabaseClient, User } from '@supabase/supabase-js';
 import { Router } from '@angular/router';
+
+import { MessageService } from 'primeng/api';
 
 import { environment } from '../../environments/environment';
 import { Database } from '../database/supabase';
@@ -8,6 +10,7 @@ import { DatabaseUser, UserLoginData, UserRegisterData } from '../interfaces/use
 
 @Injectable({
   providedIn: 'root',
+  
 })
 export class AuthService implements OnDestroy {
   private _supabaseUrl: string = environment.apiUrl;
@@ -15,6 +18,7 @@ export class AuthService implements OnDestroy {
   private _supabaseClient: SupabaseClient<any, 'public', any>;
   private _supabaseSubscription: Subscription;
   private _router: Router = inject(Router);
+  private _messageService: MessageService = inject(MessageService);
   public user: WritableSignal<User | null> = signal<User | null>(null);
   public loggedUser: WritableSignal<DatabaseUser | null> = signal<DatabaseUser | null>(null);
 
@@ -111,32 +115,27 @@ export class AuthService implements OnDestroy {
     };
   }
 
-  public async signUp(user: UserRegisterData): Promise<void> {
+  public async signUp(user: UserRegisterData): Promise<AuthError | null> {
     const { data, error } = await this._supabaseClient.auth.signUp({
       email: user.email,
       password: user.password,
     });
-
-    if (error) {
-      console.error('Error signing up:', error);
-      return;
-    }
-
+    
     if (data.user?.id) {
       user.id = data.user.id;
       await this._insertUser(user);
     }
+
+    return error;
   }
 
-  public async signIn(user: UserLoginData): Promise<void> {
+  public async signIn(user: UserLoginData): Promise<AuthError | null> {
     const { data, error } = await this._supabaseClient.auth.signInWithPassword({
       email: user.email,
       password: user.password,
     });
 
-    if (error) {
-      console.error('Error signing in:', error);
-    }
+    return error;
   }
 
   public async signOut(): Promise<void> {
@@ -146,6 +145,12 @@ export class AuthService implements OnDestroy {
       console.error('Error signing out:', error);
       return;
     }
+
+    this._messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Sesión cerrada correctamente!'
+    });
 
     console.info('User signed out successfully');
   }

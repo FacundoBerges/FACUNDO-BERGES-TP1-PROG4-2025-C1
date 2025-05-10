@@ -7,23 +7,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { UserLoginData } from '../../interfaces/user-data';
+import { FormErrorService } from '../../services/form-error.service';
 
 @Component({
   selector: 'juegos-login-form',
-  imports: [
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    RouterLink,
-  ],
+  imports: [ MatFormFieldModule, MatIconModule, MatInputModule, ReactiveFormsModule, RouterLink ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
 })
 export class LoginFormComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder);
-  public readonly userLoginEmitter: OutputEmitterRef<UserLoginData> =
-    output<UserLoginData>();
+  private _formErrorService: FormErrorService = inject(FormErrorService);
+  public readonly userLoginEmitter: OutputEmitterRef<UserLoginData> = output<UserLoginData>();
   public loginForm: FormGroup = this._formBuilder.group({
     email: ['', [Validators.required, Validators.email, Validators.minLength(3)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -38,7 +33,10 @@ export class LoginFormComponent {
     return this.loginForm.get('password');
   }
 
-  //TODO: implementar el servicio de autenticación
+  public getErrorMessage(controlName: string): string | void {
+    return this._formErrorService.getErrorMessage(controlName, this.loginForm);
+  }
+
   public onSubmit(): void {
     if (!this.loginForm.valid) {
       this.loginForm.markAllAsTouched();
@@ -52,15 +50,13 @@ export class LoginFormComponent {
     };
 
     this.userLoginEmitter.emit(userLoginData);
-
-    console.log('Login Form Submitted:', this.loginForm.value);
   }
 
   public clearEmail(): void {
     this.email?.setValue('');
   }
 
-  public togglePasswordVisibility() {
+  public togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
 }

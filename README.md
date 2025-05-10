@@ -63,23 +63,23 @@ La _"Sala de Juegos"_ tiene que contar con los siguientes puntos:
   - ✅ Explicar de forma clara la elección del juego propio y cómo jugarlo.
 - ✅ Implementar un favicon propio.
 
-### Sprint #2
+### Sprint #2 ✅
 
 - ✅ Funcionalidad - Componente Bienvenida / Home:
   - ✅ Tiene que ser el componente principal, desde este se podrán acceder a los diferentes juegos y listados.
   - ✅ Si el usuario **_NO_** está logueado, mostrar los botones de registro e inicio de sesión.
   - ✅ Si el usuario está logueado, mostrar su nombre de usuario y un botón para cerrar sesión.
   - ✅ Hasta no ver el tema "Guardias de ruta" o "Guards", no es necesario bloquear los botones de los juegos, pero si ocultar los botones que no deberían verse (ejemplo, si estoy logueado, no debería ver el botón de registrarme). Una vez visto ese tema, bloquear la navegación a dichas rutas en el caso en el que sea necesario.
-- ❌ Funcionalidad - Inicio de sesión:
+- ✅ Funcionalidad - Inicio de sesión:
   - ✅ Tiene que validar al usuario frente a supabase / firebase utilizando correo y contraseña.
   - ✅ En caso de que el inicio de sesión sea exitoso, navegar automáticamente al Home.
-  - ❌ En caso de que el inicio de sesión no sea exitoso, mostrar un mensaje con el respectivo error.
-  - ❌ La página de login debe contar con tres botones de inicio de sesión rápido, que le permitan a quién esté probando la aplicación ingresar automáticamente con usuarios previamente registrados para que las pruebas sean más ágiles.
-- ❌ Funcionalidad: Registro.
+  - ✅ En caso de que el inicio de sesión no sea exitoso, mostrar un mensaje con el respectivo error.
+  - ✅ La página de login debe contar con tres botones de inicio de sesión rápido, que le permitan a quién esté probando la aplicación ingresar automáticamente con usuarios previamente registrados para que las pruebas sean más ágiles.
+- ✅ Funcionalidad: Registro.
   - ✅ Cuenta con un formulario que permite registrar a un usuario. Crea su cuenta en el sistema de autenticación y guarda sus datos en la base de datos. Nota: la contraseña **_no_** se guarda.
   - ✅ El usuario debe ingresar su correo, nombre, apellido, edad y contraseña.
   - ✅ Una vez cargados todos los datos, y el usuario se registra correctamente, se debe iniciar sesión con ese usuario y navegar automáticamente al Home.
-  - ❌ Emitir mensaje si el usuario ya se encuentra registrado.
+  - ✅ Emitir mensaje si el usuario ya se encuentra registrado.
 
 ### Sprint #3
 

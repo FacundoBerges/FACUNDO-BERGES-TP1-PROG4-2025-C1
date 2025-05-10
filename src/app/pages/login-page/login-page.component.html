@@ -1,1 +1,11 @@
 <juegos-login-form (userLoginEmitter)="loginUser($event)" />
+
+<div class="flex flex-col">
+  <juegos-fast-login loginEmail="usuarioprueba@mail.com" loginPassword="usuarioprueba" loginUser="Usuario Prueba" (loginEmitter)="loginUser($event)" />
+
+  <juegos-fast-login loginEmail="holamundo@mail.com" loginPassword="holamundo" loginUser="Hola Mundo" (loginEmitter)="loginUser($event)" />
+  
+  <juegos-fast-login loginEmail="test.user@mail.com" loginPassword="test.user" loginUser="Test User" (loginEmitter)="loginUser($event)" />
+</div>
+
+<p-toast position="bottom-center" />
