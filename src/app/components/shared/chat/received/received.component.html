@@ -1,5 +1,13 @@
 <div class="mb-2">
-  <p class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">
+  <p class="text-gray-600 text-sm mt-1">
+    {{ message().user.name }}
+  </p>
+
+  <p class="bg-gray-200 text-gray-800 rounded-lg py-2 px-4 inline-block">
     {{ message().message }}
   </p>
+
+  <div>
+    <span class="text-gray-400 text-xs mt-1">{{ message().created_at | date: 'mediumTime' }}</span>
+  </div>
 </div>
