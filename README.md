@@ -90,10 +90,10 @@ La _"Sala de Juegos"_ tiene que contar con los siguientes puntos:
   - ✅ Se muestra una de una baraja de naipes. Se debe adivinar si la próxima carta va a ser un número mayor o un número menor.
   - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de cartas acertadas, etc.
 - ❌ Sala de chat:
-  - ❌ Se debe mostrar el chat global para los usuarios logueados.
-  - ❌ Se debe permitir enviar un mensaje a la sala de chat.
-  - ❌ Al enviar un mensaje, este se guarda en la base de datos con el usuario que lo envió, el mensaje y la fecha de envío.
-  - ❌ Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje automáticamente (se debe estar suscrito al servicio de base de datos en tiempo real).
+  - ✅ Se debe mostrar el chat global para los usuarios logueados.
+  - ✅ Se debe permitir enviar un mensaje a la sala de chat.
+  - ✅ Al enviar un mensaje, este se guarda en la base de datos con el usuario que lo envió, el mensaje y la fecha de envío.
+  - ✅ Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje automáticamente (se debe estar suscrito al servicio de base de datos en tiempo real).
   - ❌ Se debe mostrar quién envía cada mensaje y a qué hora. El mensaje propio debe diferenciarse del resto.
 
 ### Sprint #4
