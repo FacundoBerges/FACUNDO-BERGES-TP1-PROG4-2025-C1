@@ -34,6 +34,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      games: {
+        Row: {
+          description: string
+          id: string
+          image_path: string | null
+          name: string
+          path: string
+        }
+        Insert: {
+          description: string
+          id?: string
+          image_path?: string | null
+          name: string
+          path: string
+        }
+        Update: {
+          description?: string
+          id?: string
+          image_path?: string | null
+          name?: string
+          path?: string
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           created_at: string
@@ -56,6 +80,54 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "messages_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scores: {
+        Row: {
+          correct: number
+          created_at: string
+          elapsed_time_milis: number
+          game_id: string
+          id: string
+          total_score: number
+          user_id: string
+          wrong: number
+        }
+        Insert: {
+          correct?: number
+          created_at?: string
+          elapsed_time_milis: number
+          game_id?: string
+          id?: string
+          total_score: number
+          user_id?: string
+          wrong?: number
+        }
+        Update: {
+          correct?: number
+          created_at?: string
+          elapsed_time_milis?: number
+          game_id?: string
+          id?: string
+          total_score?: number
+          user_id?: string
+          wrong?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scores_game_id_fkey"
+            columns: ["game_id"]
+            isOneToOne: false
+            referencedRelation: "games"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scores_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"

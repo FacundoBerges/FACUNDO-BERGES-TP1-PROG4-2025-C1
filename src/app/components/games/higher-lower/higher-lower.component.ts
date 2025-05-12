@@ -1,8 +1,8 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
-import { ButtonComponent } from '../../ui/button/button.component';
 import { LowerOrHigher } from '../../../interfaces/lower-higher';
 import { HigherLowerService } from '../../../services/higher-lower.service';
+import { ButtonComponent } from '../../ui/button/button.component';
 import { HigherLowerCardComponent } from './higher-lower-card/higher-lower-card.component';
 import { TimerComponent } from '../../shared/timer/timer.component';
 
@@ -13,9 +13,11 @@ import { TimerComponent } from '../../shared/timer/timer.component';
   styleUrl: './higher-lower.component.scss',
 })
 export class HigherLowerComponent {
-  public CARD_BACK: string = 'grey_back';
+  public readonly CARD_BACK: string = 'grey_back';
   public higherLowerService: HigherLowerService = inject(HigherLowerService);
-  public isGameOver: WritableSignal<boolean> = signal<boolean>(false);
+  public isGameOver = signal<boolean>(false);
+  public correctGuesses = signal<number>(0);
+  public endedByTimeout = signal<boolean>(false);
 
   constructor() {
     this.higherLowerService.newDeck();
@@ -25,10 +27,6 @@ export class HigherLowerComponent {
     return this.higherLowerService.deck();
   }
 
-  public get currentCard(): string {
-    return this.higherLowerService.currentCard();
-  }
-
   public get lastCard(): string {
     return this.higherLowerService.lastCard();
   }
@@ -36,13 +34,20 @@ export class HigherLowerComponent {
   public drawCard(guess: LowerOrHigher): void {
     if (this.isGameOver()) return;
 
-    this.higherLowerService.currentCard.set(this.higherLowerService.drawCard());
     const lastCard: string = this.higherLowerService.lastCard();
     const currentCard: string = this.higherLowerService.drawCard();
 
+    this._guessCard(guess, lastCard, currentCard);
+  }
+
+  private _guessCard(
+    guess: LowerOrHigher,
+    lastCard: string,
+    currentCard: string
+  ): void {
+    const lastValue: number = this.higherLowerService.getCardValue(lastCard);
     const currentValue: number =
       this.higherLowerService.getCardValue(currentCard);
-    const lastValue: number = this.higherLowerService.getCardValue(lastCard);
 
     this.higherLowerService.lastCard.set(currentCard);
 
@@ -53,11 +58,37 @@ export class HigherLowerComponent {
       this.isGameOver.set(true);
       return;
     }
+
+    this.correctGuesses.update((guess) => ++guess);
   }
 
   public resetGame(): void {
     this.higherLowerService.newDeck();
-    this.higherLowerService.drawCard();
     this.isGameOver.set(false);
+    this.endedByTimeout.set(false);
+    this.correctGuesses.set(0);
+  }
+
+  public onTimeout(): void {
+    this.endedByTimeout.set(true);
+    this.isGameOver.set(true);
+    console.log('Game out of time');
+  }
+
+  public setGameOver(remainingTimeMilis: number): void {
+    this.isGameOver.set(true);
+    console.log('guess:', this.correctGuesses());
+    console.log('Remaining time:', remainingTimeMilis);
+
+    const score: number = this.higherLowerService.calculateTotal(
+      remainingTimeMilis,
+      this.correctGuesses()
+    );
+    console.log('Score:', score);
+
+    this.higherLowerService.saveScore({
+      guess: this.correctGuesses(),
+      remainingTimeMilis,
+    });
   }
 }

@@ -1,5 +1,5 @@
+import { Component, effect, EffectRef, input, OnDestroy, output, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Component, input, InputSignal, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'juegos-timer',
@@ -7,60 +7,84 @@ import { Component, input, InputSignal, OnDestroy, OnInit, signal, WritableSigna
   templateUrl: './timer.component.html',
   styleUrl: './timer.component.scss',
 })
-export class TimerComponent implements OnInit, OnDestroy {
-  public initialTimeMilis: InputSignal<number> = input<number>(60 * 2 * 1000); // 2 minutes by default
-  public timeLeft: WritableSignal<number> = signal<number>(0);
+export class TimerComponent implements OnDestroy {
+  private _startTime!: number;
+  public static readonly DEFAULT_TIME: number = 60 * 2 * 1000; // 2 minutes by default
+  public initialTimeMilis = input<number>(TimerComponent.DEFAULT_TIME);
+  public run = input.required<boolean>();
+  public runEffect: EffectRef;
+  public timerStoppedEmitter = output<number>();
+  public timerFinishedEmitter = output<void>();
+  public timeLeft = signal<number>(0);
+  public timeLeftEffect: EffectRef;
   public interval?: NodeJS.Timeout;
-  private startTime!: number;
-  private elapsedPausedTime: number = 0; // To store time elapsed when paused
 
-  ngOnInit(): void {
-    this.timeLeft.set(this.initialTimeMilis());
-    // We don't start immediately on init, the user or parent component should call startTimer
-    this.startTimer();
+  constructor() {
+    this.runEffect = effect(
+      () => {
+        const shouldRun = this.run();
+
+        shouldRun ? this._startTimer() : this._stopTimer();
+      },
+      {
+        manualCleanup: true,
+      }
+    );
+
+    this.timeLeftEffect = effect(
+      () => {
+        this.timeLeft.set(this.initialTimeMilis());
+      },
+      {
+        manualCleanup: true,
+      }
+    );
   }
 
   ngOnDestroy(): void {
-    this.stopTimer();
+    this._stopTimer(true);
+    this.runEffect.destroy();
+    this.timeLeftEffect.destroy();
   }
 
-  public startTimer(): void {
+  private _startTimer(): void {
     if (this.interval) return;
 
-    this.startTime = Date.now() - this.elapsedPausedTime; // Adjust start time if resuming
-    this._tick(); // Start the recursive timeout
+    this._startTime = Date.now();
+    this._tick();
   }
 
-  public stopTimer(): void {
-    if (this.interval) {
-      clearTimeout(this.interval);
-      this.interval = undefined;
-      this.elapsedPausedTime = Date.now() - this.startTime;
+  private _stopTimer(isDestroying: boolean = false): void {
+    if (!this.interval) return;
+
+    clearTimeout(this.interval);
+    this.interval = undefined;
+
+    if (!isDestroying) {
+      if (this.timeLeft() <= 0) {
+        this.timerFinishedEmitter.emit();
+        return;
+      }
+
+      this.timerStoppedEmitter.emit(this.timeLeft());
     }
-  }
-
-  public resetTimer(): void {
-    this.stopTimer();
-    this.timeLeft.set(this.initialTimeMilis());
-    this.elapsedPausedTime = 0;
   }
 
   private _tick(): void {
     const now = Date.now();
-    const elapsedTime = now - this.startTime;
+    const elapsedTime = now - this._startTime;
     const remainingTime = this.initialTimeMilis() - elapsedTime;
 
     if (remainingTime <= 0) {
       this.timeLeft.set(0);
-      this.stopTimer();
-      // Optionally emit an event here to signal the timer has finished
+      this._stopTimer(false);
       return;
     }
 
     this.timeLeft.set(remainingTime);
 
-    const nextTickTime = this.startTime + elapsedTime + 1;
-    const delay = nextTickTime - now;
+    const nextTickExpectedTime = this._startTime + elapsedTime + 10;
+    const delay = nextTickExpectedTime - now;
 
     this.interval = setTimeout(() => this._tick(), delay > 0 ? delay : 0);
   }

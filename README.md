@@ -81,14 +81,14 @@ La _"Sala de Juegos"_ tiene que contar con los siguientes puntos:
   - ✅ Una vez cargados todos los datos, y el usuario se registra correctamente, se debe iniciar sesión con ese usuario y navegar automáticamente al Home.
   - ✅ Emitir mensaje si el usuario ya se encuentra registrado.
 
-### Sprint #3
+### Sprint #3 ✅
 
-- ❌ Juego: Ahorcado.
+- ✅ Juego: Ahorcado.
   - ✅ Deben mostrarse botones que simbolicen a todas las letras del abecedario. La entrada de datos es a través de botones, NO el teclado.
-  - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, junto con el tiempo de finalización, cantidad de letras seleccionadas, etc.
-- ❌ Juego: Mayor o Menor.
+  - ✅ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, junto con el tiempo de finalización, cantidad de letras seleccionadas, etc.
+- ✅ Juego: Mayor o Menor.
   - ✅ Se muestra una de una baraja de naipes. Se debe adivinar si la próxima carta va a ser un número mayor o un número menor.
-  - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de cartas acertadas, etc.
+  - ✅ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de cartas acertadas, etc.
 - ✅ Sala de chat:
   - ✅ Se debe mostrar el chat global para los usuarios logueados.
   - ✅ Se debe permitir enviar un mensaje a la sala de chat.

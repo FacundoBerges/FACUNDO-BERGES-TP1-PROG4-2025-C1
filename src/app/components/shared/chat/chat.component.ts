@@ -2,7 +2,7 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 
-import { Message } from '../../../interfaces/message';
+import { ScrollBottomDirective } from '../../../directives/scroll-bottom.directive';
 import { AuthService } from '../../../services/auth.service';
 import { ChatService } from '../../../services/chat.service';
 import { InputComponent } from './input/input.component';
@@ -11,7 +11,7 @@ import { ReceivedComponent } from './received/received.component';
 
 @Component({
   selector: 'juegos-chat',
-  imports: [MatIconModule, ReceivedComponent, SendedComponent, InputComponent],
+  imports: [MatIconModule, ReceivedComponent, SendedComponent, InputComponent, ScrollBottomDirective],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
 })

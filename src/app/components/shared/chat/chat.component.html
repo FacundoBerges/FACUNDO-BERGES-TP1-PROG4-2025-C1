@@ -16,7 +16,7 @@
       </button>
     </div>
 
-    <div id="chatbox" class="p-4 h-80 overflow-y-auto">
+    <div id="chatbox" class="p-4 h-80 overflow-y-auto" juegosScrollBottom>
       @for (message of chatService.messages(); track message.id) {
         @if (authService.user()?.id === message.user.id ) {
           <juegos-sended [message]="message" />
@@ -29,3 +29,4 @@
       <juegos-input (messageEmitter)="sendMessage($event)" />
     </div>
   </div>
+</div>

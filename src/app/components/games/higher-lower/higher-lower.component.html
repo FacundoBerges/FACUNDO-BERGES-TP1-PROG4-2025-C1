@@ -1,7 +1,12 @@
-<div class="my-8 flex justify-center align-center">
-  <juegos-timer />
-  <!-- [isGameOver]="isGameOver()"  -->
-  <!-- (timerFinished)="onTimerFinished()"  -->
+<div class="my-8 flex flex-col md:flex-row-reverse justify-center md:justify-around align-center">
+  <div class="flex flex-row justify-center align-center">
+    <juegos-timer [run]="!isGameOver()" (timerFinishedEmitter)="onTimeout()"
+      (timerStoppedEmitter)="setGameOver($event)" />
+  </div>
+
+  <div class="flex flex-row justify-center align-center">
+
+  </div>
 </div>
 
 <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
