@@ -1,3 +1,14 @@
+<div class="my-8 flex flex-col md:flex-row-reverse justify-center md:justify-around align-center">
+  <div class="flex flex-row justify-center align-center">
+    <juegos-timer [run]="isTimerActive()" (timerFinishedEmitter)="setGameOver()"
+      (timerStoppedEmitter)="setGameWon($event)" />
+  </div>
+
+  <div class="flex flex-row justify-center align-center">
+
+  </div>
+</div>
+
 <juegos-hangman-image [imageNumber]="attempts()" />
 
 <juegos-hangman-word [hiddenWord]="hiddenWord()" />

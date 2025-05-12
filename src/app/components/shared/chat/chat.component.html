@@ -1,0 +1,32 @@
+<div id="chat-button-container" class="fixed bottom-0 right-0 mb-4 mr-4">
+  <button (click)="toggleChatbox()" id="chat-button"
+    class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 flex items-center">
+    <mat-icon class="mr-2">chat</mat-icon>Chatear con otros usuarios
+  </button>
+</div>
+
+<div id="chat-container" [class.hidden]="!isChatboxOpen()" class="fixed bottom-16 right-4 w-64 sm:w-96">
+  <div class="bg-white shadow-md rounded-lg max-w-lg w-full">
+    <div class="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center">
+      <p class="text-lg font-semibold">Chat 🗨️</p>
+
+      <button id="close-chat-button" (click)="toggleChatbox()"
+        class="text-gray-300 flex justify-center align-center hover:text-gray-400 focus:outline-none focus:text-gray-400">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div id="chatbox" class="p-4 h-80 overflow-y-auto" juegosScrollBottom>
+      @for (message of chatService.messages(); track message.id) {
+        @if (authService.user()?.id === message.user.id ) {
+          <juegos-sended [message]="message" />
+        }
+        @else {
+          <juegos-received [message]="message" />
+        }
+      }
+
+      <juegos-input (messageEmitter)="sendMessage($event)" />
+    </div>
+  </div>
+</div>

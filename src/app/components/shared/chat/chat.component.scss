@@ -1,0 +1,13 @@
+#chat-button-container,
+#chat-container {
+  z-index: 10000;
+}
+
+#chat-button,
+#close-chat-button {
+  cursor: pointer;
+}
+
+#chat-container {
+  transition: all 0.2s ease-in-out;
+}
