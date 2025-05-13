@@ -8,6 +8,8 @@
   </p>
 
   <div>
-    <span class="text-gray-400 text-xs mt-1">{{ message().created_at | date: 'mediumTime' }}</span>
+    <span class="text-gray-400 text-xs mt-1">
+      {{ message().created_at | date: 'dd/MM/yyyy, hh:mm:ss a' | lowercase }}
+    </span>
   </div>
 </div>

@@ -1,11 +1,11 @@
 import { Component, input, InputSignal } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, LowerCasePipe } from '@angular/common';
 
 import { Message } from '../../../../interfaces/message';
 
 @Component({
   selector: 'juegos-sended',
-  imports: [DatePipe],
+  imports: [DatePipe, LowerCasePipe],
   templateUrl: './sended.component.html',
   styleUrl: './sended.component.scss',
 })

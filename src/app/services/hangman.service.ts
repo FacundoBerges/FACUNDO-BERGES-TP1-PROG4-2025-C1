@@ -11,6 +11,8 @@ import { Score } from '../interfaces/score';
 })
 export class HangmanService {
   private readonly GAME_ID: string = environment.hangmanId;
+  private readonly GUESS_MULTIPLIER: number = 25;
+  private readonly WRONG_MULTIPLIER: number = 10;
   private _authService: AuthService = inject(AuthService);
   private _scoreService: ScoreService = inject(ScoreService);
   private _words: string[] = [
@@ -61,17 +63,15 @@ export class HangmanService {
     return this._words[randomIndex];
   }
 
-  public calculateTotal(
-    remainingTimeMilis: number,
-    correctAnswers: number,
-    wrongAnswers: number
-  ): number {
-    if (correctAnswers < wrongAnswers) return 0;
+  public calculateCurrentScore(correctGuesses: number, wrongGuesses: number): number {
+    const correctScore: number = correctGuesses * this.GUESS_MULTIPLIER;
+    const wrongScore: number = wrongGuesses * this.WRONG_MULTIPLIER;
 
-    const correctScore: number = correctAnswers * 25;
-    const wrongScore: number = wrongAnswers * 10;
-    const totalScore: number =
-      ((correctScore - wrongScore) * remainingTimeMilis) / 1000;
+    return (correctScore - wrongScore);
+  }
+
+  public calculateTotal(remainingTimeMilis: number, correctGuesses: number, wrongGuesses: number): number {
+    const totalScore: number = (this.calculateCurrentScore(correctGuesses, wrongGuesses)) * remainingTimeMilis / 1000;
 
     return Math.floor(totalScore);
   }

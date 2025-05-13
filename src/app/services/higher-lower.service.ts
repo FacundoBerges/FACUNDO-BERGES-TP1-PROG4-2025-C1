@@ -14,6 +14,7 @@ import { Score } from '../interfaces/score';
 })
 export class HigherLowerService {
   private readonly GAME_ID: string = environment.higherLowerId;
+  private readonly GUESS_MULTIPLIER: number = 5;
   private _authService: AuthService = inject(AuthService);
   private _scoreService: ScoreService = inject(ScoreService);
   public scores = signal<Score[]>([]);
@@ -60,10 +61,14 @@ export class HigherLowerService {
     return parseInt(rank);
   }
 
+  public calculateCurrentScore(guess: number): number {
+    return guess * this.GUESS_MULTIPLIER;
+  }
+
   public calculateTotal(remainingTimeMilis: number, guess: number): number {
     if (guess <= 0) return 0;
 
-    const correctScore: number = guess * 5;
+    const correctScore: number = this.calculateCurrentScore(guess);
     const totalScore: number = (correctScore * remainingTimeMilis) / 1000;
 
     return Math.floor(totalScore);
