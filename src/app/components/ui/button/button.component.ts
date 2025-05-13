@@ -1,4 +1,4 @@
-import { Component, input, InputSignal } from '@angular/core';
+import { Component, input, InputSignal, output } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -12,4 +12,9 @@ import { GameButton } from '../../../interfaces/game-button';
 })
 export class ButtonComponent {
   public button: InputSignal<GameButton> = input.required<GameButton>();
+  public clickEmitter = output<void>();
+
+  public onClick(): void {
+    this.clickEmitter.emit();
+  }
 }

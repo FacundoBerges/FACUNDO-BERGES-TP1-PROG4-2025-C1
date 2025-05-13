@@ -8,8 +8,8 @@ import { DatePipe } from '@angular/common';
   styleUrl: './timer.component.scss',
 })
 export class TimerComponent implements OnDestroy {
+  private static readonly DEFAULT_TIME: number = 60 * 2 * 1000; // 2 minutes by default
   private _startTime!: number;
-  public static readonly DEFAULT_TIME: number = 60 * 2 * 1000; // 2 minutes by default
   public initialTimeMilis = input<number>(TimerComponent.DEFAULT_TIME);
   public run = input.required<boolean>();
   public runEffect: EffectRef;
@@ -17,7 +17,7 @@ export class TimerComponent implements OnDestroy {
   public timerFinishedEmitter = output<void>();
   public timeLeft = signal<number>(0);
   public timeLeftEffect: EffectRef;
-  public interval?: NodeJS.Timeout;
+  public interval?: ReturnType<typeof setTimeout>;
 
   constructor() {
     this.runEffect = effect(

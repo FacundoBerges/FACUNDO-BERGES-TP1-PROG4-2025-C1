@@ -19,7 +19,7 @@ const games: Game[] = [
   {
     name: 'Preguntados',
     description: 'Responde las preguntas de trivia!',
-    image: 'https://placehold.co/150x150',
+    image: '/assets/img/trivia.png',
     path: '/games/trivia',
   },
   {
