@@ -5,7 +5,7 @@
   </div>
 
   <div class="flex flex-row justify-center align-center">
-
+    <juegos-result [score]="currentScore()" [success]="correctGuesses()"/>
   </div>
 </div>
 
@@ -25,3 +25,5 @@
     <juegos-button (click)="resetGame()" [button]="{label: 'Nuevo juego', isDisabled: false}" />
   </div>
 </div>
+
+<juegos-game-dialog [showDialog]="showDialog()" [message]="gameOverMessage" (closeDialogEmitter)="closeDialog()" />

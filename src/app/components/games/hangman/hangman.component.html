@@ -5,7 +5,7 @@
   </div>
 
   <div class="flex flex-row justify-center align-center">
-
+    <juegos-result [score]="currentScore()" [success]="correctGuesses()"/>
   </div>
 </div>
 
@@ -17,10 +17,12 @@
 
 <div class="container">
   @for (button of letterButtons(); track button.label) {
-  <juegos-button [button]="button" (click)="checkLetter(button.label)" />
+    <juegos-button [button]="button" (click)="checkLetter(button.label)" />
   }
 </div>
 
 <div class="flex flex-row justify-center items-center">
   <juegos-button [button]="{ label: 'Nuevo juego', isDisabled: false}" (click)="newGame()" />
 </div>
+
+<juegos-game-dialog [showDialog]="showDialog()" title="Partida finalizada" [message]="gameOverMessage" (closeDialogEmitter)="closeDialog()" />
