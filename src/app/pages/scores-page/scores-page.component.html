@@ -1,0 +1,23 @@
+@if (!isLoading()) {
+  @defer  {
+    <h3 class="block text-center text-bold text-6xl">Scores</h3>
+
+    <h4 class="text-3xl">Ahorcado:</h4>
+    <juegos-scores-table [data]="hangmanScores" />
+
+    <h4 class="text-3xl">Mayor o menor:</h4>
+    <juegos-scores-table [data]="higherLowerScores" />
+
+    <h4 class="text-3xl">Preguntados:</h4>
+    <juegos-scores-table [data]="triviaScores" />
+
+    <h4 class="text-3xl">2048:</h4>
+    <juegos-scores-table [data]="twentyFortyEightScores" />
+  }
+  @loading (minimum 1s) {
+    <juegos-loader />
+  }
+} 
+@else {
+  <juegos-loader />
+}

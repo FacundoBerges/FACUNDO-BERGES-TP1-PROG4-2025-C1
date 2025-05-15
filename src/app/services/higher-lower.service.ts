@@ -20,6 +20,7 @@ export class HigherLowerService {
   public scores = signal<Score[]>([]);
   public deck = signal<string[]>([]);
   public lastCard = signal<string>('');
+  public isLoading = signal<boolean>(false);
 
   private _initializeDeck(): void {
     let deck: string[] = [];
@@ -103,8 +104,11 @@ export class HigherLowerService {
   }
 
   public async getScores(): Promise<void> {
+    this.isLoading.set(true);
+
     this._scoreService.getScores(this.GAME_ID).then((scores) => {
       this.scores.set(scores);
+      this.isLoading.set(false);
     });
   }
 }

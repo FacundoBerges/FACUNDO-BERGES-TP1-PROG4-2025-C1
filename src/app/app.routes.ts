@@ -24,6 +24,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register-page/register-page.component').then((c) => c.RegisterPageComponent),
   },
   {
+    path: 'scores',
+    title: 'Juegos - Resultados',
+    loadComponent: () => import('./pages/scores-page/scores-page.component').then((c) => c.ScoresPageComponent),
+  },
+  {
     path: 'games',
     title: 'Juegos',
     canActivateChild: [authGuard],

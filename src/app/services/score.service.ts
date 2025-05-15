@@ -32,7 +32,7 @@ export class ScoreService {
       .from('scores')
       .select('*')
       .eq('game_id', gameId)
-      .order('score', { ascending: false })
+      .order('total_score', { ascending: false })
       .limit(100);
 
     if (error) {

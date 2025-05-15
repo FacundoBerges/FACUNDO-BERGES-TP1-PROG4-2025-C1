@@ -7,6 +7,7 @@ import { AuthService } from '../../../services/auth.service';
 const noLoginMenu: MenuItem[] = [
   { name: 'Inicio', path: '/' },
   { name: 'Sobre mí', path: '/about' },
+  { name: 'Resultados', path: '/score' },
   { name: 'Registrarse', path: '/register' },
   { name: 'Iniciar sesión', path: '/login' },
 ];
@@ -14,6 +15,7 @@ const noLoginMenu: MenuItem[] = [
 const loggedMenu: MenuItem[] = [
   { name: 'Inicio', path: '/' },
   { name: 'Sobre mí', path: '/about' },
+  { name: 'Resultados', path: '/score' },
   { name: 'Cerrar sesión', path: '/logout' },
 ];
 

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -22,6 +22,8 @@ export class TriviaService {
   private readonly GAME_ID: string = environment.triviaId;
   private readonly CORRECT_MULTIPLIER: number = 50;
   private readonly WRONG_MULTIPLIER: number = 20;
+  public scores = signal<Score[]>([]);
+  public isLoading = signal<boolean>(false);
 
   public getQuestions(amount: number = 10): Observable<TriviaResponse> {
     return this._httpClient.get<TriviaResponse>(
@@ -38,7 +40,7 @@ export class TriviaService {
     const correctScore = correctAnswers * this.CORRECT_MULTIPLIER;
     const wrongScore = wrongAnswers * this.WRONG_MULTIPLIER;
 
-    return (correctScore - wrongScore > 0) ? (correctScore - wrongScore) : 0;
+    return correctScore - wrongScore > 0 ? correctScore - wrongScore : 0;
   }
 
   public async saveScore(triviaScore: TriviaScore) {
@@ -62,5 +64,14 @@ export class TriviaService {
 
     await this._scoreService.saveScore(score);
     console.log('Score saved successfully:', score);
+  }
+
+  public async getScores() {
+    this.isLoading.set(true);
+
+    this._scoreService.getScores(this.GAME_ID).then((score) => {
+      this.scores.set(score);
+      this.isLoading.set(false);
+    });
   }
 }
