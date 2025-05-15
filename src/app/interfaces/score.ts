@@ -10,18 +10,18 @@ export interface Score {
 }
 
 export const SCORE_COLUMNS = [
-  {
-    header: 'ID',
-    field: 'id',
-  },
+  // {
+  //   header: 'ID',
+  //   field: 'id',
+  // },
   {
     header: 'Fecha de creación',
     field: 'created_at',
   },
-  {
-    header: 'ID Juego',
-    field: 'game_id',
-  },
+  // {
+  //   header: 'ID Juego',
+  //   field: 'game_id',
+  // },
   {
     header: 'ID Usuario',
     field: 'user_id',
