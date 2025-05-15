@@ -1,4 +1,3 @@
-import { Database } from '../database/supabase';
 export interface UserLoginData {
   id?: string;
   email: string;

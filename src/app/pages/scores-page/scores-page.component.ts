@@ -1,10 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 
-import { ScoreService } from '../../services/score.service';
+import { environment } from '../../../environments/environment';
+
 import { Score } from '../../interfaces/score';
+
+import { ScoreService } from '../../services/score.service';
+
 import { ScoresTableComponent } from '../../components/scores-table/scores-table.component';
 import { LoaderComponent } from '../../components/shared/loader/loader.component';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'juegos-scores-page',
@@ -33,6 +36,7 @@ export class ScoresPageComponent implements OnInit {
       this.scoreService.getScores(environment.triviaId),
       this.scoreService.getScores(environment.twentyFortyEightId),
     ]);
+
     this.isLoading.set(false);
   }
 }
