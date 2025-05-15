@@ -96,7 +96,7 @@ La _"Sala de Juegos"_ tiene que contar con los siguientes puntos:
   - ✅ Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje automáticamente (se debe estar suscrito al servicio de base de datos en tiempo real).
   - ✅ Se debe mostrar quién envía cada mensaje y a qué hora. El mensaje propio debe diferenciarse del resto.
 
-### Sprint #4
+### Sprint #4 ✅
 
 - ✅ Juego: Preguntados.
   - ✅ Debe obtener los datos de una api.
