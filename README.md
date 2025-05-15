@@ -105,10 +105,10 @@ La _"Sala de Juegos"_ tiene que contar con los siguientes puntos:
   - ✅ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de preguntas acertadas, etc.
 - ✅ Crear el juego propio:
   - ✅ Agregar la descripción y reglas del mismo en la página quién soy.
-  - ❌ Al finalizar la partida, guardar en la base de datos: el usuario que jugó y algún dato que mida su desempeño (puntaje, tiempo en finalizar, etc).
-- ❌ Listados de resultados:
-  - ❌ Crear la page Resultados.
-  - ❌ Crear 4 tablas que detallen los resultados de los 4 juegos, mostrando el desempeño de cada jugador ordenado de mejor desempeño / puntaje a peor.
+  - ✅ Al finalizar la partida, guardar en la base de datos: el usuario que jugó y algún dato que mida su desempeño (puntaje, tiempo en finalizar, etc).
+- ✅ Listados de resultados:
+  - ✅ Crear la page Resultados.
+  - ✅ Crear 4 tablas que detallen los resultados de los 4 juegos, mostrando el desempeño de cada jugador ordenado de mejor desempeño / puntaje a peor.
 
 ### Sprint #5 - Recuperatorio ❌
 

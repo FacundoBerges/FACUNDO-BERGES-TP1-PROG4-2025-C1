@@ -56,6 +56,7 @@ export class HangmanService {
     'API REST',
   ];
   public scores = signal<Score[]>([]);
+  public isLoading = signal<boolean>(false);
 
   public get randomWord(): string {
     const randomIndex = Math.floor(Math.random() * this._words.length);
@@ -63,15 +64,25 @@ export class HangmanService {
     return this._words[randomIndex];
   }
 
-  public calculateCurrentScore(correctGuesses: number, wrongGuesses: number): number {
+  public calculateCurrentScore(
+    correctGuesses: number,
+    wrongGuesses: number
+  ): number {
     const correctScore: number = correctGuesses * this.GUESS_MULTIPLIER;
     const wrongScore: number = wrongGuesses * this.WRONG_MULTIPLIER;
 
-    return (correctScore - wrongScore);
+    return correctScore - wrongScore;
   }
 
-  public calculateTotal(remainingTimeMilis: number, correctGuesses: number, wrongGuesses: number): number {
-    const totalScore: number = (this.calculateCurrentScore(correctGuesses, wrongGuesses)) * remainingTimeMilis / 1000;
+  public calculateTotal(
+    remainingTimeMilis: number,
+    correctGuesses: number,
+    wrongGuesses: number
+  ): number {
+    const totalScore: number =
+      (this.calculateCurrentScore(correctGuesses, wrongGuesses) *
+        remainingTimeMilis) /
+      1000;
 
     return Math.floor(totalScore);
   }
@@ -109,8 +120,11 @@ export class HangmanService {
   }
 
   public async getScores(): Promise<void> {
+    this.isLoading.set(true);
+
     this._scoreService.getScores(this.GAME_ID).then((scores) => {
       this.scores.set(scores);
+      this.isLoading.set(false);
     });
   }
 }
