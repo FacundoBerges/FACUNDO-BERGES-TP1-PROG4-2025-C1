@@ -5,8 +5,19 @@
 :root {
   font-size: 16px;
   --header-height: 5rem;
+  --score-background: #1976d2;
+  --score-text-color: #ffffff;
+  --hr-color: #888888;
 
   scroll-behavior: smooth;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --score-background: #1267bb;
+    --score-text-color: #eaeaea;
+    --hr-color: #d1d1d1;
+  }
 }
 
 * {

@@ -1,8 +1,8 @@
 .score {
-  background-color: var(--mat-sys-primary);
+  background-color: var(--score-background);
+  color: var(--score-text-color);
   border-radius: 0.25rem;
   border: 1px solid var(--mat-sys-primary-container);
-  color: var(--mat-sys-on-primary);
   max-width: 20rem;
   padding: 0.5rem;
 }

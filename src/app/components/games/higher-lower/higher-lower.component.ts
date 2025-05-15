@@ -2,20 +2,22 @@ import { Component, inject, signal } from '@angular/core';
 
 import { LowerOrHigher } from '../../../interfaces/lower-higher';
 import { HigherLowerService } from '../../../services/higher-lower.service';
-import { ButtonComponent } from '../../ui/button/button.component';
+import { GameButtonComponent } from '../../ui/button/game-button.component';
 import { HigherLowerCardComponent } from './higher-lower-card/higher-lower-card.component';
 import { TimerComponent } from '../../shared/timer/timer.component';
-import { ResultComponent } from '../../shared/result/result.component';
+import { ScoreComponent } from '../../shared/score/score.component';
 import { GameDialogComponent } from '../../shared/game-dialog/game-dialog.component';
+import { RestartButtonComponent } from '../../ui/restart-button/restart-button.component';
 
 @Component({
   selector: 'juegos-higher-lower',
   imports: [
     HigherLowerCardComponent,
-    ButtonComponent,
+    GameButtonComponent,
     TimerComponent,
-    ResultComponent,
+    ScoreComponent,
     GameDialogComponent,
+    RestartButtonComponent,
   ],
   templateUrl: './higher-lower.component.html',
   styleUrl: './higher-lower.component.scss',

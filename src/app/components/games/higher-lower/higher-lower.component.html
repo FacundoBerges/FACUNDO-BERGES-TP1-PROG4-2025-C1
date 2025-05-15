@@ -5,7 +5,7 @@
   </div>
 
   <div class="flex flex-row justify-center align-center">
-    <juegos-result [score]="currentScore()" [success]="correctGuesses()"/>
+    <juegos-score [score]="currentScore()" [success]="correctGuesses()"/>
   </div>
 </div>
 
@@ -17,12 +17,12 @@
 
 <div>
   <div class="flex flex-row justify-center align-center">
-    <juegos-button (click)="drawCard('higher')" [button]="{label: 'Mayor', isDisabled: isGameOver() }" />
-    <juegos-button (click)="drawCard('lower')" [button]="{label: 'Menor', isDisabled: isGameOver()}" />
+    <juegos-game-button (clickEmitter)="drawCard('higher')" [button]="{label: 'Mayor', isDisabled: isGameOver(), icon: 'arrow_upward' }" />
+    <juegos-game-button (clickEmitter)="drawCard('lower')" [button]="{label: 'Menor', isDisabled: isGameOver(), icon: 'arrow_downward'}" />
   </div>
 
   <div class="flex flex-row justify-center align-center">
-    <juegos-button (click)="resetGame()" [button]="{label: 'Nuevo juego', isDisabled: false}" />
+    <juegos-restart-button (restartGame)="resetGame()" />
   </div>
 </div>
 

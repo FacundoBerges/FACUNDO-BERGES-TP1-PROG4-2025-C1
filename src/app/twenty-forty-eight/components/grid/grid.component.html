@@ -1,0 +1,11 @@
+<div class="grid-container">
+  <div class="grid-background">
+    @for (cell of backgroundCells; track $index) {
+      <div class="grid-cell tile-container">
+        @if (tiles[$index]) {
+          <juegos-tile class="block h-full w-full" [tile]="tiles[$index]" />
+        }
+      </div>
+    }
+  </div>
+</div>

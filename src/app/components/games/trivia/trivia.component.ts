@@ -16,11 +16,12 @@ import { unescape } from 'he';
 
 import { GameDialogComponent } from '../../shared/game-dialog/game-dialog.component';
 import { TimerComponent } from '../../shared/timer/timer.component';
-import { ResultComponent } from '../../shared/result/result.component';
-import { ButtonComponent } from '../../ui/button/button.component';
+import { ScoreComponent } from '../../shared/score/score.component';
+import { GameButtonComponent } from '../../ui/button/game-button.component';
 
 import { TriviaResult, TriviaResponse } from '../../../interfaces/trivia';
 import { TriviaService } from '../../../services/trivia.service';
+import { RestartButtonComponent } from '../../ui/restart-button/restart-button.component';
 
 type TimerPhase = 'setup' | 'answer' | 'idle' | 'finished';
 
@@ -29,9 +30,10 @@ type TimerPhase = 'setup' | 'answer' | 'idle' | 'finished';
   imports: [
     ToastModule,
     TimerComponent,
-    ResultComponent,
+    ScoreComponent,
     GameDialogComponent,
-    ButtonComponent,
+    GameButtonComponent,
+    RestartButtonComponent,
   ],
   templateUrl: './trivia.component.html',
   styleUrl: './trivia.component.scss',
@@ -133,7 +135,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
     this.currentQuestion.set(this.triviaQuestions()[index]);
 
     this.currentTimerPhase.set('setup');
-    this.currentPhaseTimerDuration.set(3000);
+    this.currentPhaseTimerDuration.set(5000);
     this.isTimerRunning.set(true);
   }
 
@@ -156,7 +158,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
           severity: 'error',
           summary: 'Error',
           detail: 'No se pudieron cargar las preguntas de trivia.',
-          life: 3000,
+          life: 5000,
         });
         this.showDialog.set(true);
         this.currentTimerPhase.set('finished');
@@ -193,13 +195,15 @@ export class TriviaComponent implements OnInit, OnDestroy {
         this._messageService.add({
           severity: 'error',
           summary: 'Tiempo agotado',
-          detail: 'No seleccionaste ninguna respuesta.',
-          life: 3000,
+          detail: `No seleccionaste ninguna respuesta. La respuesta correcta era: ${
+            this.currentQuestion()?.correct_answer
+          }`,
+          life: 5000,
         });
         this._timeoutRef = setTimeout(() => {
           this._moveToNextQuestion();
           this._clearTimeout();
-        }, 1000);
+        }, 4000);
         break;
       default:
         break;
@@ -222,9 +226,11 @@ export class TriviaComponent implements OnInit, OnDestroy {
       severity: isCorrectAnswer ? 'success' : 'error',
       summary: isCorrectAnswer
         ? '¡Respuesta correcta!'
-        : '¡Respuesta incorrecta!',
+        : `¡Respuesta incorrecta! La respuesta correcta era: ${
+            this.currentQuestion()?.correct_answer
+          }`,
       detail: `Seleccionaste: ${answer}`,
-      life: 3000,
+      life: 5000,
     };
 
     if (isCorrectAnswer) {
@@ -245,7 +251,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
     this._timeoutRef = setTimeout(() => {
       this._moveToNextQuestion();
       this._clearTimeout();
-    }, 1000);
+    }, 4000);
   }
 
   private _moveToNextQuestion(): void {

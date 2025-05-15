@@ -5,17 +5,26 @@ import { letters } from '../../../helpers/letters';
 import { GameButton } from '../../../interfaces/game-button';
 import { HangmanService } from '../../../services/hangman.service';
 import { TimerComponent } from '../../shared/timer/timer.component';
-import { ResultComponent } from '../../shared/result/result.component';
-import { ButtonComponent } from '../../ui/button/button.component';
+import { ScoreComponent } from '../../shared/score/score.component';
+import { GameButtonComponent } from '../../ui/button/game-button.component';
 import { HangmanImageComponent } from './hangman-image/hangman-image.component';
 import { HangmanWordComponent } from './hangman-word/hangman-word.component';
-import { GameDialogComponent } from "../../shared/game-dialog/game-dialog.component";
+import { GameDialogComponent } from '../../shared/game-dialog/game-dialog.component';
+import { RestartButtonComponent } from '../../ui/restart-button/restart-button.component';
 
 const letterButtons: GameButton[] = createGameButtons(letters);
 
 @Component({
   selector: 'juegos-hangman',
-  imports: [ButtonComponent, HangmanImageComponent, HangmanWordComponent, TimerComponent, ResultComponent, GameDialogComponent],
+  imports: [
+    GameButtonComponent,
+    HangmanImageComponent,
+    HangmanWordComponent,
+    TimerComponent,
+    ScoreComponent,
+    GameDialogComponent,
+    RestartButtonComponent,
+  ],
   templateUrl: './hangman.component.html',
   styleUrl: './hangman.component.scss',
 })
@@ -40,8 +49,9 @@ export class HangmanComponent {
   }
 
   public get gameOverMessage(): string {
-    if (this.hasLost()) return 'Perdiste. ¡Intenta de nuevo!';
-    
+    if (this.hasLost())
+      return 'Perdiste. ¡Intenta de nuevo! La palabra era: ' + this.word();
+
     return `¡Ganaste! ¡Felicidades! Total de puntos: ${this.currentScore()}`;
   }
 
@@ -78,7 +88,10 @@ export class HangmanComponent {
 
     const guessedLetters = this.correctGuesses();
     const attempts = this.attempts();
-    let currentScore = this._hangmanService.calculateCurrentScore(guessedLetters, attempts);
+    let currentScore = this._hangmanService.calculateCurrentScore(
+      guessedLetters,
+      attempts
+    );
     this.currentScore.set(currentScore);
 
     const wordUppercase = this.word().toLocaleUpperCase();
@@ -95,12 +108,16 @@ export class HangmanComponent {
   public checkLetter(letter: string): void {
     if (this.isGameOver()) return;
 
-    this.letterButtons.update((buttons) => 
-      buttons.map((button) => button.label === letter ? { ...button, isDisabled: true } : button)
+    this.letterButtons.update((buttons) =>
+      buttons.map((button) =>
+        button.label === letter ? { ...button, isDisabled: true } : button
+      )
     );
 
     if (!this.word().includes(letter)) {
-      this.attempts.update((attempts) => Math.min(++attempts, this.MAX_ATTEMPTS));
+      this.attempts.update((attempts) =>
+        Math.min(++attempts, this.MAX_ATTEMPTS)
+      );
       this._updateGameState();
       return;
     }
@@ -120,14 +137,18 @@ export class HangmanComponent {
     this.hasWon.set(false);
     this.correctGuesses.set(0);
     this.currentScore.set(0);
-    this.letterButtons.update((buttons) => buttons.map((button) => ({ ...button, isDisabled: false })));
+    this.letterButtons.update((buttons) =>
+      buttons.map((button) => ({ ...button, isDisabled: false }))
+    );
   }
 
   public setGameOver(): void {
     this.currentScore.set(0);
     this.isTimerActive.set(false);
     this.hasLost.set(true);
-    this.letterButtons.update((buttons) => buttons.map((button) => ({ ...button, isDisabled: true })));
+    this.letterButtons.update((buttons) =>
+      buttons.map((button) => ({ ...button, isDisabled: true }))
+    );
     this.showDialog.set(true);
     console.log('You lost!');
   }
