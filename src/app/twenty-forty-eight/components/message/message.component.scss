@@ -1,0 +1,115 @@
+@use "sass:color";
+
+// Variables de Color (anteriormente $message-*-light)
+$message-overlay-background: rgba(139, 171, 185, 0.5);
+$message-container-background: #f0f8ff;
+$message-text-color: #2c3e50;
+$message-button-lower-background: #1e88e5;
+$message-button-lower-text-color: #ffffff;
+$message-button-retry-background: #1976d2;
+$message-button-retry-text-color: #ffffff;
+
+// Variables para mensajes específicos (game-won, game-over)
+$game-won-overlay-background: rgba(130, 190, 230, 0.5);
+$game-won-text-color: $message-text-color; // O un color más festivo si se desea
+
+$game-over-overlay-background: rgba(
+  180,
+  130,
+  130,
+  0.5
+); // Rojo semitransparente
+$game-over-text-color: #776e65; // Color original, se puede ajustar
+
+.game-message {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: $message-overlay-background;
+  animation: fade-in 800ms ease 300ms;
+  animation-fill-mode: both;
+
+  p {
+    font-size: 60px;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+    color: $message-text-color;
+  }
+
+  .lower {
+    display: block;
+    margin-top: 59px;
+
+    a.keep-playing-button {
+      display: inline-block;
+      padding: 0 20px;
+      border-radius: 3px;
+      height: 40px;
+      line-height: 40px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      background: $message-button-lower-background;
+      color: $message-button-lower-text-color;
+
+      &:hover {
+        background-color: color.adjust(
+          $message-button-lower-background,
+          $lightness: -10%
+        );
+      }
+    }
+
+    a.retry-button {
+      display: inline-block;
+      padding: 0 20px;
+      border-radius: 3px;
+      height: 40px;
+      line-height: 40px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      background: $message-button-retry-background;
+      color: $message-button-retry-text-color;
+
+      &:hover {
+        background-color: color.adjust(
+          $message-button-retry-background,
+          $lightness: -10%
+        );
+      }
+    }
+  }
+
+  &.game-won {
+    background: $game-won-overlay-background;
+    p {
+      color: $game-won-text-color;
+    }
+  }
+
+  &.game-over {
+    background: $game-over-overlay-background;
+    p {
+      color: $game-over-text-color;
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,10 @@
+<div class="score">
+  <p class="text-bold text-center text-md md:text-lg xl:text-3xl">
+    Puntuación actual: {{ score() }}
+  </p>
+  @if(showSuccess()) {
+    <p class="text-bold text-center text-md md:text-lg xl:text-3xl">
+      Aciertos: {{ success() }}
+    </p>
+  }
+</div>

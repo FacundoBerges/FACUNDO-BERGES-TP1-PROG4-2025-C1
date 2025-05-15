@@ -1,0 +1,137 @@
+@use "sass:color";
+
+$tile-border-radius: 3px; // Se puede mantener en px o ajustar a % si se prefiere
+$tile-font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+
+// Tamaños de fuente relativos (ej. vw o em) podrían ser una opción para responsividad avanzada,
+// pero por ahora mantenemos los tamaños fijos y ajustamos el contenedor general.
+$tile-font-size-small: 55px;
+$tile-font-size-medium: 45px;
+$tile-font-size-large: 35px;
+$tile-font-size-super: 30px;
+$tile-font-size-mega: 20px;
+
+$tile-text-color-on-dark-bg: #ffffff; // Texto claro sobre fondos oscuros/intensos de tile
+$tile-text-color-on-light-bg: #37474f; // Texto oscuro sobre fondos claros de tile (ej. 2, 4)
+
+// Paleta de azules y celestes (anteriormente $tile-colors-light)
+$tile-colors: (
+  2: #e3f2fd,
+  4: #bbdefb,
+  8: #90caf9,
+  16: #64b5f6,
+  32: #42a5f5,
+  64: #2196f3,
+  128: #1e88e5,
+  256: #1976d2,
+  512: #1565c0,
+  1024: #0d47a1,
+  2048: #0d47a1,
+  4096: #0a3a8a,
+  8192: #072b73,
+);
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // position: absolute;
+  // Las transiciones y el posicionamiento se calculan en JS y se aplican como estilos en línea,
+  // por lo que el tamaño base del tile debe ser coherente con los cálculos de grid.service.ts.
+  // Si el grid ahora es responsive, tile.model.ts y grid.service.ts necesitarán
+  // calcular posiciones y tamaños basados en el tamaño actual del viewport/grid.
+  // Por ahora, el SCSS del tile no define su width/height explícitamente,
+  // asumiendo que se establece dinámicamente o hereda de un contenedor con tamaño.
+
+  // Para que los tiles escalen con el grid, su tamaño (width/height) debe ser
+  // un porcentaje del .grid-cell o calculado dinámicamente en JS.
+  // Si .grid-cell es 22% del .grid-row, y .grid-row es 100% del .grid-container (menos padding),
+  // entonces el tile también debería ser ~22% del .grid-row en tamaño.
+  // Esto es más un tema de cómo se calcula y aplica el estilo en el TS/HTML.
+
+  // Lo que sí podemos hacer en SCSS es asegurar que el line-height sea relativo al tamaño del tile.
+  // Si el tile es, por ejemplo, 22vw de alto, line-height también debería serlo.
+  // Por ahora, lo dejamos como estaba, asumiendo que el JS lo maneja o que los px son un placeholder.
+  // line-height: 100px; // Esto DEBERÍA CAMBIAR si el tile es responsive.
+  // Si el tile es 22% de la fila, y la fila es X alto, line-height: X;
+  // O si el tile tiene aspect-ratio 1/1 y width: 22%, entonces line-height: 22vw (aprox)
+  height: 100%;
+  width: 100%;
+  border-radius: $tile-border-radius;
+  transition: transform 0.1s ease-in-out, left 0.1s ease-in-out,
+    top 0.1s ease-in-out;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  font-weight: bold;
+  font-family: $tile-font-family;
+  box-sizing: border-box;
+
+  .tile-inner {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // line-height: $tile-size;
+    // font-size: 45px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  @each $value, $color in $tile-colors {
+    &.tile-#{$value} {
+      background-color: $color;
+      @if $value <= 4 {
+        color: $tile-text-color-on-light-bg;
+      } @else {
+        color: $tile-text-color-on-dark-bg;
+      }
+
+      @if $value < 100 {
+        font-size: $tile-font-size-small;
+      } @else if $value < 1000 {
+        font-size: $tile-font-size-medium;
+      } @else if $value < 10000 {
+        font-size: $tile-font-size-large;
+      } @else if $value < 100000 {
+        font-size: $tile-font-size-super;
+      } @else {
+        font-size: $tile-font-size-mega;
+      }
+    }
+  }
+
+  &.tile-new {
+    animation: appear 200ms ease-in-out;
+    transform: scale(0.9);
+    animation-fill-mode: forwards;
+  }
+
+  &.tile-merged {
+    animation: pop 200ms ease-in-out;
+    z-index: 20;
+    animation-fill-mode: forwards;
+  }
+}

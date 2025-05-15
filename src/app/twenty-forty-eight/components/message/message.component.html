@@ -1,0 +1,5 @@
+<div class="game-message" [class.game-won]="won && !gameOver" [class.game-over]="gameOver && !won">
+    @if (gameOver && !won) {
+      <p>Game over!</p>
+    }
+</div>

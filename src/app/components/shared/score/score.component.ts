@@ -1,12 +1,12 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'juegos-result',
+  selector: 'juegos-score',
   imports: [],
-  templateUrl: './result.component.html',
-  styleUrl: './result.component.scss',
+  templateUrl: './score.component.html',
+  styleUrl: './score.component.scss',
 })
-export class ResultComponent {
+export class ScoreComponent {
   public score = input.required<number>();
   public success = input<number>(0);
   public showSuccess = input<boolean>(true);

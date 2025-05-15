@@ -1,0 +1,58 @@
+<div class="my-8 flex flex-col md:flex-row-reverse justify-center md:justify-around align-center">
+  <div class="flex flex-row justify-center align-center">
+    <juegos-timer [run]="!gameOver()" (timerFinishedEmitter)="handleTimerEnd()" (timerStoppedEmitter)="handleTimerStop($event)"/>
+  </div>
+
+  <div class="flex flex-row justify-center align-center">
+    <juegos-score [score]="currentScore()" [showSuccess]="false" />
+  </div>
+</div>
+
+<div class="container">
+  <!-- <div class="heading">
+    <h1 class="title">2048</h1>
+    <div class="scores-container">
+      <div class="score-container">{{ currentScore() }}</div>
+      <div class="best-container">{{ highScore() }}</div>
+    </div>
+  </div> -->
+
+  
+
+  <!-- <div class="above-game">
+    <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
+
+  </div> -->
+
+  <div class="game-container">
+    <juegos-grid [tiles]="tiles()" [size]="gridSize" />
+    @if (gameOver() || won()) {
+    <juegos-message [gameOver]="gameOver()" [won]="won()" (restartGame)="handleRestartGame()"
+      (keepPlaying)="handleKeepPlaying()" />
+    }
+  </div>
+
+  <div class="buttons-container">
+    <div class="flex flex-row justify-center align-center">
+      <juegos-game-button [button]="{ label: 'Arriba', isDisabled: gameOver(), icon: 'keyboard_arrow_up' }" (clickEmitter)="handleButton('ArrowUp')" />
+    </div>
+
+    <div class="flex flex-row justify-center align-center">
+      <juegos-game-button [button]="{ label: 'Izquierda', isDisabled: gameOver(), icon: 'keyboard_arrow_left' }" (clickEmitter)="handleButton('ArrowLeft')" />
+      <juegos-game-button [button]="{ label: 'Abajo', isDisabled: gameOver(), icon: 'keyboard_arrow_down' }" (clickEmitter)="handleButton('ArrowDown')" />
+      <juegos-game-button [button]="{ label: 'Derecha', isDisabled: gameOver(), icon: 'keyboard_arrow_right' }" (clickEmitter)="handleButton('ArrowRight')" />
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center mx-4">
+    <juegos-restart-button (restartGame)="newGame()" />
+  </div>
+
+  <hr>
+
+  <juegos-game-explanation
+    [explanation]="'Usa las flechas del teclado o W A S D para mover las fichas. Cuando dos fichas con el mismo número se tocan, se fusionan en una sola.'"
+    [controls]="'flechas del teclado o W A S D, o botones en pantalla'" />
+</div>
+
+<juegos-game-dialog [showDialog]="showDialog()" title="Partida finalizada" [message]="gameOverMessage" (closeDialogEmitter)="handleCloseDialog()" />
