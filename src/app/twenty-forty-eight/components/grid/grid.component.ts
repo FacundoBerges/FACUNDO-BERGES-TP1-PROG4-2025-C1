@@ -5,7 +5,7 @@ import { TileComponent } from '../tile/tile.component';
 
 @Component({
   selector: 'juegos-grid',
-  imports: [TileComponent], // Ya no se necesita NgFor con @for
+  imports: [TileComponent],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.scss',
 })
@@ -17,7 +17,6 @@ export class GridComponent {
     return Array(this.size * this.size).fill(null);
   }
 
-  // Función trackBy para el @for de tiles
   trackTileById(index: number, tile: Tile | null): string | undefined {
     return tile ? tile.id : undefined;
   }
