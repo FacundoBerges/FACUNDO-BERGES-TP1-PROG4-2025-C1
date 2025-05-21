@@ -131,4 +131,4 @@ La _"Sala de Juegos"_ tiene que contar con los siguientes puntos:
 
 ---
 
-### **_[Despliegue en netlify](https://facundoberges-tp-sala-de-juegos.netlify.app/)_**
+## **_[Despliegue en netlify](https://facundoberges-tp-sala-de-juegos.netlify.app/)_**
