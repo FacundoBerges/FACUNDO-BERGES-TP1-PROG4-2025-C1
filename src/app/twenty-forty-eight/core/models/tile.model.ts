@@ -1,7 +1,6 @@
 import { Position } from '../interfaces/position.interface';
 import { Tile } from '../interfaces/tile.interface';
 
-// Función simple para generar IDs únicos si unique-id.service no está disponible/portado aún
 const generateUniqueId = (): string =>
   Math.random().toString(36).substring(2, 15);
 
@@ -14,11 +13,10 @@ export class TileModel implements Tile {
   originalY?: number;
   merged?: boolean;
   isNew?: boolean;
-  previousPosition: Position | null = null; // Propiedad añadida
+  previousPosition: Position | null = null;
 
   constructor(position: Position, value: number, id?: string) {
-    // id ahora es opcional
-    this.id = id || generateUniqueId(); // Usar id provisto o generar uno nuevo
+    this.id = id || generateUniqueId();
     this.x = position.x;
     this.y = position.y;
     this.value = value || 2;
@@ -36,7 +34,7 @@ export class TileModel implements Tile {
   public savePosition(): void {
     this.originalX = this.x;
     this.originalY = this.y;
-    this.previousPosition = { x: this.x, y: this.y }; // Actualizar previousPosition
+    this.previousPosition = { x: this.x, y: this.y };
   }
 
   public reset(): void {
